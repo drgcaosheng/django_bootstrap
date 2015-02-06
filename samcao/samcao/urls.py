@@ -4,7 +4,9 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('samcao.views',
+    url(r'^$','hello'),
+    url(r'time/$','current_datetime'),
     # Examples:
     # url(r'^$', 'samcao.views.home', name='home'),
     # url(r'^samcao/', include('samcao.foo.urls')),
