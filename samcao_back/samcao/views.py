@@ -11,11 +11,3 @@ def current_datetime(request):
 
 def boots(request):
     return render_to_response('test.html')
-
-def hours_ahead(requst,offset):
-    try:
-        offset=int(offset)
-    except ValueError:
-        raise Http404()
-    dt=datetime.datetime.now()+datetime.timedelta(hours=offset)
-    return render_to_response('index.html',{'now':dt})

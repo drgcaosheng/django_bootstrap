@@ -9,7 +9,6 @@ urlpatterns = patterns('samcao.views',
     url(r'^$','hello'),
     url(r'^time/$','current_datetime'),
     url(r'^boots/$','boots'),
-    url(r'^time/plus/(\d{1,2})/$','hours_ahead'),
     # Examples:
     # url(r'^$', 'samcao.views.home', name='home'),
     # url(r'^samcao/', include('samcao.foo.urls')),
