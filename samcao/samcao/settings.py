@@ -51,7 +51,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__),'templates/bootstrap').replace('\\','/')
 # MEDIA_ROOT = 'D:\\python\\django_bootstrap\\samcao\\samcao\\templates\\bootstrap\\',
 # MEDIA_ROOT = os.path.join(os.path.dirname(__file__),'templates/bootstrap/').replace('\\','/'),
 

@@ -7,7 +7,7 @@ def hello(request):
 
 def current_datetime(request):
     now = datetime.datetime.now()
-    return render_to_response('index.html',{'now':now})
+    return render_to_response('index.html')
 
 def boots(request):
     return render_to_response('test.html')
