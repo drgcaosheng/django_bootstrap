@@ -6,7 +6,6 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('samcao.views',
-    url(r'^$','hello'),
     url(r'^time/$','current_datetime'),
     url(r'^boots/$','boots'),
     url(r'^time/plus/(\d{1,2})/$','hours_ahead'),
@@ -21,6 +20,7 @@ urlpatterns = patterns('samcao.views',
     url(r'^admin/', include(admin.site.urls)),
 )
 urlpatterns += patterns('samcao.problem.views',
+    url(r'^$','index'),
     url(r'^systemlist/$','returnSystemList'),
     url(r'^systemgl/$','system_gl'),
 )

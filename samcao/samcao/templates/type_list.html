@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block way_system %}
+        {% for type in typeList %}
+            <a href="#" class="list-group-item">{{ type }}</a>
+        {% endfor %}
+<!--<a href="#" class="list-group-item">Linux系统管理后台</a>-->
+<!--<a href="#" class="list-group-item">Linux超域管理后台</a>-->
+<!--<a href="#" class="list-group-item">Linux域管理后台</a>-->
+<!--<a href="#" class="list-group-item">Linux底层</a>-->
+<!--<a href="#" class="list-group-item">Windows系统管理后台</a>-->
+<!--<a href="#" class="list-group-item">Windows超域管理后台</a>-->
+<!--<a href="#" class="list-group-item">Windows域管理后台</a>-->
+<!--<a href="#" class="list-group-item">Windows底层</a>-->
+<!--<a href="#" class="list-group-item">其它</a>-->
+{% endblock %}
+{% block menu_list %}
+        {{ wayList }}
+        <!--{% for k in wayList %}-->
+            <!--{{ k }}<br/>-->
+        <!--{% endfor %}-->
+        <!--{{ w_list }}-->
+    <!--<div class="panel-heading">-->
+        <!--<h3 class="panel-title">-->
+            <!--无法收取邮件-->
+        <!--</h3>-->
+    <!--</div>-->
+    <!--<div class="panel-body">-->
+        <!--邮件服务没有启动-->
+    <!--</div>-->
+    <!--<div class="panel-heading">-->
+        <!--<h3 class="panel-title">-->
+            <!--umail_nginx 禁止IP打开webmail-->
+        <!--</h3>-->
+    <!--</div>-->
+    <!--<div class="panel-body">-->
+        <!--test-->
+    <!--</div>-->
+{% endblock %}
