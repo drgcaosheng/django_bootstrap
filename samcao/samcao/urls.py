@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('samcao.views',
     url(r'^$','hello'),
@@ -18,8 +18,13 @@ urlpatterns = patterns('samcao.views',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 )
+urlpatterns += patterns('samcao.problem.views',
+    url(r'^systemlist/$','returnSystemList'),
+    url(r'^systemgl/$','system_gl'),
+)
+
 
 urlpatterns += patterns('',
     (r'^bootstrap/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT,}),
