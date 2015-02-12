@@ -23,11 +23,12 @@
        <div>
           <ul class="nav navbar-nav">
              <li class="active"><a href="/">首页</a></li>
-             <li><a href="#">添加问题</a></li>
-              <li><a href="#">系统类型管理</a></li>
+             <li><a href="/add_way/">添加问题</a></li>
+              <li><a href="/system_gl/">系统类型管理</a></li>
               <li><a href="#">用户管理</a></li>
               <li><a href="#">问题类型管理</a></li>
               <li><a href="#">问题列表</a></li>
+              <li><a href="/jy_list/">获取用户经验列表</a></li>
           </ul>
        </div>
         <!--导航层搜索框-->
@@ -47,7 +48,11 @@
             <a class="list-group-item active">
                 问题类型
             </a>
-            {% block way_system %}{% endblock %}
+                {% block way_system %}
+                    {% for type in typeList %}
+                        <a href="#" class="list-group-item">{{ type }}</a>
+                    {% endfor %}
+                {% endblock %}
             <!--<a href="#" class="list-group-item">Linux系统管理后台</a>-->
             <!--<a href="#" class="list-group-item">Linux超域管理后台</a>-->
             <!--<a href="#" class="list-group-item">Linux域管理后台</a>-->
