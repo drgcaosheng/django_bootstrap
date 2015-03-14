@@ -13,7 +13,7 @@ userJinYanAll={}
 
 #提取用户总共有多少经验
 def tiquNumber(url):
-    print '2-1'
+    # print '2-1'
     regex = re.compile(r'&pn=(\d{1,10})"')
     web=urllib2.urlopen(url).read()
     num= regex.findall(web)
@@ -33,7 +33,7 @@ def retJinYanYe(url,num):
 
 #返回分页经验
 def retNumTitle(jylist):
-    print '2-2'
+    # print '2-2'
     numjisu=0
     for url in jylist:
         numjisu+=1
@@ -68,7 +68,7 @@ def retNumTitle(jylist):
 
 #根据地址,使用cookie浏览具体页面,返回浏览量,更新时间
 def retLiuLanNum(keyword,url,i):
-    print '4'
+    # print '4'
     loginUrl='http://jingyan.baidu.com'+url
     #以cookie来访问具体的网页
     # cj = cookielib.CookieJar()
@@ -98,7 +98,7 @@ def retLiuLanNum(keyword,url,i):
     userJinYanAll[keyword].append(updateTime[0])
     userJinYanAll[keyword].append(viewsNum[0])
     userJinYanAll[keyword].append(loginUrl)
-    print '5'
+    # print '5'
     # print userJinYanAll
     # sys.exit()
     # print str(i)+"\t\t"+userJinYanAll[keyword][1]+"\t"+userJinYanAll[keyword][5]+"\t"+userJinYanAll[keyword][3]+"\t"+userJinYanAll[keyword][2]+"\t"+userJinYanAll[keyword][6]
@@ -113,7 +113,7 @@ def getcookie():
     f = urllib2.urlopen(url= loginUrl)
 
 def menu(url):
-    print '2'
+    # print '2'
     try:
         #获取用户姝经验分页
         # print '提取经验总数量...'
@@ -136,7 +136,7 @@ def menu(url):
         i=0
 
         for k,v in userJinYanAll.items():
-            print '3'
+            # print '3'
             i+=1
             retLiuLanNum(k,v[0],i)
             # print "%s:%s"%(k,v)
@@ -149,12 +149,12 @@ def menu(url):
         # for k,v in userjianyanpaixu.items():
         #     i+=1
         #     print str(i)+"\t\t"+userjianyanpaixu[1]+"\t"+userjianyanpaixu[5]+"\t"+userjianyanpaixu[3]+"\t"+userjianyanpaixu[2]+"\t"+userjianyanpaixu[6]
-        print '6'
-        # print userJinYanAll
-        print '7'
-        tesret='99'
-        return  tesret
-        print '8'
+        # print '6'
+        print userJinYanAll
+        # print '7'
+        # tesret='99'
+        return  userJinYanAll
+        # print '8'
     except KeyboardInterrupt,e:
         return  "QUIT"
         # print "QUIT"
@@ -185,8 +185,9 @@ def sys_input2(baiduid):
     url_baidu='http://jingyan.baidu.com/user/npublic/expList?un='
     # raw_str=urllib2.quote(raw_input('请输入用户百度经验ID: '))
     url=url_baidu+baiduid
-    print '1'
-    menu(url)
+    # print '1'
+    jylist=menu(url)
+    return jylist
     # url='http://jingyan.baidu.com/user/npublic/expList?un=QQ1520018443'
     # menu(url)
 

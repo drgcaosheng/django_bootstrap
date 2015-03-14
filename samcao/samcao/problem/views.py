@@ -2,11 +2,11 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from samcao.problem.models import System,Type,Way
-# import tiqujinyan
-import os,sys,time,urllib2,re
+import tqjinyanends
 import cookielib
-import multiprocessing
 import datetime,time
+import os,sys,time,urllib2,re
+import multiprocessing
 
 
 
@@ -23,6 +23,7 @@ def jy_list(request):
     # hello=tiqujinyan.sys_input_wap('他二姨的家')
     # return HttpResponse(hello)
     errors=[]
+    # testitems={'testone':['a','b','c','d','e','f','g','h'],'testtwo':['1','2','3','4','5','6','7','8']}
     t_list=Type.objects.all()
     if 'jy_name' in request.GET:
         jy_name=request.GET['jy_name']
@@ -30,9 +31,7 @@ def jy_list(request):
             errors.append('Please input ID!!!')
             # return render_to_response('jy_list.html',{'typeList':t_list,'errors':'Error'})
         else:
-
             url_baidu='http://jingyan.baidu.com/user/npublic/expList?un='
-
             jy_name=re.sub(r'\n','',jy_name)
             jy_name=re.sub(r'\n','',jy_name)
             # raw_str=urllib2.quote(jy_name)
@@ -40,9 +39,14 @@ def jy_list(request):
             # return HttpResponse(url)
             # return HttpResponse(url)
             # web=urllib2.urlopen(url).read()
+
+            web=tqjinyanends.sys_input2(jy_name)
+
+
             # return HttpResponse(web)
-            return render_to_response('jy_list.html',{'typeList':t_list,'jy_name':url})
+            return render_to_response('jy_list.html',{'typeList':t_list,'jy_name':web})
     return render_to_response('jy_list.html',{'typeList':t_list,'errors':errors})
+
 
 
 def system_gl(request):
