@@ -1,0 +1,104 @@
+source test.sql
+
+update userlist set maildir=replace(maildir,'H:','C:');   (((H盘改为C盘)))
+mysqldump -u 用户名 -p 数据库名 表　> 导出的文件名
+mysql -P 6033 -u root -p 数据库名 < 备份文件名
+Create table test_jiudian (查询条件)   创建新表
+mysqldump -P 6033 -u root -p -w "usr_name='admin'" umail back > back2.sql   备份对应条件的数据
+select mailbox,password into outfile 'name.txt' from userlist;   导出表至txt文件中.
+source ***.sql   导入表.
+delete from 表名 where 条件=值
+alter table oldername rename newname;    --更换表名
+alter table table_name change old_name new_name varhcar(255);   --更换列名
+# mysqladmin -u root -p password 新密码 # 修改 root 密码
+--------查询以某个字母开头的所有的表
+select table_name from information_schema.Tables where table_schema='数据库名' and table_name like '某个字开头%';
+show variables like '%datadir%'    ------------查询数据库的绝对路径
+
+#导出用户的用户名及密码.域名.
+select userlist.mailbox,userlist.password,domains.DomainName into outfile 'name.xls' from userlist join domains where userlist.DomainID=domains.DomainID;
+
+select userlist.mailbox,userlist.password,domains.DomainName from userlist join domains where userlist.DomainID=domains.DomainID;
+
+#更改所有的用户不需要更改密码.
+update userlist set ChangeInitPass='off';
+#如果需要更改指定的用户.则使用下面的语句.添加上where
+update userlist set ChangeInitPass='off' where mailbox='who';
+
+#添加用户
+grant select,insert,update,delete on *.* to test1@“%” Identified by “abc”;
+
+#导出联系人相关
+SELECT u.mailbox,p.fullname,pref_email into outfile 'name.xls'  FROM pab_contact as p,userlist as u where p.user_id=u.userid
+ 
+#添加system用户
+INSERT INTO `umail`.`userlist` (`UserID`, `Mailbox`, `FullName`, `EnglishName`, `MailDir`, `Password`, `AutoDecode`, `IsForwarding`, `AllowAccess`, `AllowChangeViaEmail`, `KeepForwardedMail`, `HideFromEveryone`, `EncryptMail`, `ApplyQuotas`, `EnableMultiPop`, `CanModifyGAB`, `CalendarOnly`, `MaxMessageCount`, `MaxDiskSpace`, `MaxNetFileSpace`, `CustomFieldValue`, `OrderNo`, `DomainID`, `ChangeInitPass`, `LevelID`, `IntranetLoginOnly`) VALUES ('2', 'system', 'system', '', 'D:/umail/mysql\\Users\\mepm.com.cn\\system\\', '1qaz2wsx', '0', '0', '1', '1', '1', '0', '0', '1', '1', '0', '0', '0', '300', '0', NULL, '0', '1', 'off', '0', '0');
+
+
+
+set password for 'root'@'localhost' =password('');
+flush privileges;
+
+
+
+
+lizheng00996584
+
+http://www.comingchina.com/survey/   这个是链接
+
+一般说
+
+您好这里是U-MAIL邮件系统的，耽误您几分钟的时间，请您对
+U-Mail的技术支持服务进行评价以及建议，方便U-Mail技术服务的改进。谢谢
+
+
+Warning: phpinfo() [function.phpinfo]: It is not safe to rely on the system's timezone settings.
+
+一、在页头使用date_default_timezone_set()设置 date_default_timezone_set('PRC'); //东八时区 echo date('Y-m-d H:i:s');
+ 
+二、在页头使用 ini_set('date.timezone','Asia/Shanghai');三、修改php.ini。打开php5.ini查找date.timezone 去掉前面的分号修改成为：date.timezone ="PRC" PRC注意加上双引号，要不还会出错！
+重启http服务（如apache2或iis等）即可。  
+XXX可以任意正确的值。对于我们国内来说：可以为以下值：Asia/Chongqing ，Asia/Shanghai ，Asia/Urumqi （依次为重庆，上海，乌鲁木齐）港台地区可用：Asia/Macao ，Asia/Hong_Kong ，Asia/Taipei （依次为澳门，香港，台北），还有新加坡：Asia/Singapore，当然PRC也行。
+
+
+
+查询伪列insert into co_user_attr(mailbox_id,domain_id,type,item,value)
+SELECT mailbox_id,domain_id,(@type:=@type) as type,(@item:=@item) as item,(@value:=@value) as value FROM `core_mailbox`,(select @type:="user") as r,(select @item:="save_contact") as total,(select @value:=-1) as value where domain_id='1';
+
+
+>INSERT INTO student(id,xuesheng,yuwen,shuxue,yingyu) SELECT id,xuesheng,yuwen,shuxue,yingyu FROM stu; --------将查询到的结果.插入到其它的表中.
+
+INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value)
+SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit") as item ,(@value:="1")as value  FROM `core_mailbox` where domain_id='2'
+
+
+
+48 	2 	manage 	dept_view_permit 	1
+1644 	2 	manage 	dept_view_permit 	1
+
+
+
+INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value)
+SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit") as item ,(@value:="1")as value  FROM `core_mailbox` where domain_id='2'
+
+
+
+
+
+
+公牛集团.批量更改用户查看部门权限信息.
+1.查部门的ID
+SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')
+2.查用户的ID.
+SELECT mailbox_id FROM `co_department_member` where dept_id in (69,71)
+3.将查询出来的数据,以伪列的查询方式.添加至相关的表中.
+
+INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value)
+SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit") as item ,(@value:="1")as value FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商'));
+4.将某个部门下面所有的用户都设置为不显示在通讯录中.
+UPDATE `umail`.`co_user` SET `oabshow` = '-1' WHERE `co_user`.`mailbox_id` in (SELECT mailbox_id FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')));
+5.更改某个部门是否可以收发邮件.
+update core_mailbox set limit_recv='2' where mailbox_id in (SELECT mailbox_id FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')))
+
+6.写信右边的单位通讯录.有些是中文.有些是英文.
+update userlist,mailuserinfo set mailuserinfo.realname=userlist.fullname where userlist.userid=mailuserinfo.userid

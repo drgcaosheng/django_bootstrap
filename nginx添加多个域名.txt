@@ -1,0 +1,112 @@
+本节主要讲解如果使用nginx配置多个虚拟主机,也就是我们通常说的配置域名.接下来我们配置两个域名a.ttlsa.com，b.ttlsa.com。
+
+如果你还不会安装nginx的话，请看第一节内容：ttlsa教程系列之nginx – nginx安装(1)
+准备站点
+
+我们站点统一放到/data/site下，每个站点根目录名称都和域名相同,具体如下。
+新建a.ttlsa.com的站点根目录
+# mkdir -p /data/site/a.ttlsa.com
+
+    新建a站的首页index.html
+
+# cat /data/site/a.ttlsa.com/index.html
+this is a.ttlsa.com!
+
+    新建b.ttlsa.com站点根目录
+
+# mkdir -p /data/site/b.ttlsa.com
+
+    新建b站首页index.html,内容如this is b.ttlsa.com！
+
+# cat /data/site/b.ttlsa.com/index.html
+this is b.ttlsa.com!
+
+    新建日志文件目录
+
+# mkdir -p /data/logs/nginx
+
+我们统一讲日志存放到/data/logs下,这边是存放nginx日志,所以nginx日志保持在当前的nginx目录下.日志统一存放相对来说比较规范（如果你不习惯,你可以按自己的方式来做）
+配置nginx虚拟主机
+
+    增加nginx主配置文件nginx.conf
+
+先配置nginx日志格式，在nginx.conf找到如下内容，并且将#注释标志去掉
+#log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+# '$status $body_bytes_sent "$http_referer" '
+# '"$http_user_agent" "$http_x_forwarded_for"';
+
+    配置nginx主配置文件
+
+# vim /usr/local/nginx-1.5.1/conf/nginx.conf
+server{
+server_name a.ttlsa.com;
+listen 80;
+root /data/site/a.ttlsa.com;
+ 
+access_log /data/logs/nginx/a.ttlsa.com-access.log main;
+location /
+{
+ 
+}
+}
+ 
+server{
+server_name b.ttlsa.com;
+listen 80;
+root /data/site/b.ttlsa.com;
+ 
+access_log /data/logs/nginx/b.ttlsa.com-access.log main;
+location /
+{
+ 
+}
+}
+
+    配置讲解
+
+server{}：配置虚拟主机必须有这个段。
+
+server_name：虚拟主机的域名，可以写多个域名，类似于别名，比如说你可以配置成
+server_name b.ttlsa.com c.ttlsa.com d.ttlsa.com，这样的话，访问任何一个域名，内容都是一样的
+listen 80，监听ip和端口，这边仅仅只有端口，表示当前服务器所有ip的80端口，如果只想监听127.0.0.1的80，写法如下：
+listen 127.0.0.1:80
+root /data/site/b.ttlsa.com：站点根目录，你网站文件存放的地方。注：站点目录和域名尽量一样，养成一个好习惯
+access_log /data/logs/nginx/b.ttlsa.com-access.log main：访问日志
+location /{} 默认uri,location具体内容后续讲解,大家关注一下.
+重启并打开站点
+
+nginx -t 检查nginx配置是否ok，命令如下：
+# /usr/local/nginx-1.5.1/sbin/nginx -t
+nginx: the configuration file /usr/local/nginx-1.5.1/conf/nginx.conf syntax is ok
+nginx: configuration file /usr/local/nginx-1.5.1/conf/nginx.conf test is successful
+
+如果看到以上两行ok和successful就表示配置问题，那接下来我们启动nginx
+
+启动nginx
+# /usr/local/nginx-1.5.1/sbin/nginx
+
+访问a.ttlsa.com、b.ttlsa.com（我这边DNS已经解析到了192.168.1.201，在测试的情况下，我们可以通过版本hosts即可），绑定host方法如下：
+讲如下内容增加到C:\Windows\System32\Drivers\etc\hosts
+192.168.1.201 a.ttlsa.com
+192.168.1.201 b.ttlsa.com
+
+以上是windows绑定hosts方式，如下是linux方式
+echo "192.168.1.201 a.ttlsa.com
+192.168.1.201 b.ttlsa.com" >> /etc/hosts
+
+使用浏览器访问这两个站点。我这边使用curl来访问。
+[root@ns conf]# curl http://a.ttlsa.com
+this is a.ttlsa.com! //a站点内容
+[root@ns conf]# curl http://b.ttlsa.com
+this is b.ttlsa.com! //b站点内容
+其他指令
+
+    关闭nginx
+
+/usr/local/nginx-1.5.1/sbin/nginx -s stop
+
+    重启nginx
+
+/usr/local/nginx-1.5.1/sbin/nginx -s reload //修改配置之后reload,实际上严格意义来说这不是
+
+转载请注明出处：http://www.ttlsa.com/html/1571.html
