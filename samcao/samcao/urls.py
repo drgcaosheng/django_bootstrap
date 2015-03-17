@@ -24,6 +24,8 @@ urlpatterns += patterns('samcao.problem.views',
     url(r'^add_way/$','add_way'),
     url(r'^jy_list/$','jy_list'),
     url(r'^system_gl/$','system_gl'),
+    url(r'^test_gl/$','test_gl'),
+    url(r'^search/$','search'),
 )
 
 

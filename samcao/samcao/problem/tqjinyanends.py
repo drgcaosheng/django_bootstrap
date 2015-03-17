@@ -15,7 +15,9 @@ userJinYanAll={}
 def tiquNumber(url):
     # print '2-1'
     regex = re.compile(r'&pn=(\d{1,10})"')
+    # print '2-11'
     web=urllib2.urlopen(url).read()
+    # print '2-12'
     num= regex.findall(web)
     if not len(num):
         num.append(1)
@@ -115,15 +117,19 @@ def getcookie():
 def menu(url):
     # print '2'
     try:
+        # print '2-3'
         #获取用户姝经验分页
         # print '提取经验总数量...'
         numYe=tiquNumber(url)
         #根据分页链接获取每页上面的链接
+        # print '2-4'
         jylist=retJinYanYe(url,numYe)
+        # print '2-5'
         # print '总共有:%s页经验.'%len(jylist)
         # print '根据分页信息获取具体链接..'
         # print jylist
         retNumTitle(jylist)
+        # print '2-6'
         # for t in jylist:
             #根据链接生成字典数据
             # retNumTitle(t)
@@ -150,7 +156,7 @@ def menu(url):
         #     i+=1
         #     print str(i)+"\t\t"+userjianyanpaixu[1]+"\t"+userjianyanpaixu[5]+"\t"+userjianyanpaixu[3]+"\t"+userjianyanpaixu[2]+"\t"+userjianyanpaixu[6]
         # print '6'
-        print userJinYanAll
+        # print userJinYanAll
         # print '7'
         # tesret='99'
         return  userJinYanAll
@@ -182,14 +188,18 @@ def sys_input():
         # print i[1]
 
 def sys_input2(baiduid):
-    url_baidu='http://jingyan.baidu.com/user/npublic/expList?un='
-    # raw_str=urllib2.quote(raw_input('请输入用户百度经验ID: '))
-    url=url_baidu+baiduid
-    # print '1'
-    jylist=menu(url)
-    return jylist
-    # url='http://jingyan.baidu.com/user/npublic/expList?un=QQ1520018443'
-    # menu(url)
+    try:
+        url_baidu='http://jingyan.baidu.com/user/npublic/expList?un='
+        raw_str=urllib2.quote(baiduid)
+        url=url_baidu+baiduid
+        # print '1'
+        jylist=menu(url)
+        return jylist
+        # url='http://jingyan.baidu.com/user/npublic/expList?un=QQ1520018443'
+        # menu(url)
+    except:
+        return 'ERROR'
+
 
 if __name__=="__main__":
     sys_input()

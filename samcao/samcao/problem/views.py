@@ -2,13 +2,12 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from samcao.problem.models import System,Type,Way
+
 import tqjinyanends
 import cookielib
 import datetime,time
-import os,sys,time,urllib2,re
+import os,sys,time,urllib2,re,urllib
 import multiprocessing
-
-
 
 def index(request):
     t_list=Type.objects.all()
@@ -20,35 +19,35 @@ def add_way(request):
     return render_to_response('add_way.html',{'typeList':t_list})
 
 def jy_list(request):
-    # hello=tiqujinyan.sys_input_wap('他二姨的家')
-    # return HttpResponse(hello)
     errors=[]
-    # testitems={'testone':['a','b','c','d','e','f','g','h'],'testtwo':['1','2','3','4','5','6','7','8']}
     t_list=Type.objects.all()
     if 'jy_name' in request.GET:
         jy_name=request.GET['jy_name']
         if not jy_name:
             errors.append('Please input ID!!!')
-            # return render_to_response('jy_list.html',{'typeList':t_list,'errors':'Error'})
         else:
-            url_baidu='http://jingyan.baidu.com/user/npublic/expList?un='
             jy_name=re.sub(r'\n','',jy_name)
             jy_name=re.sub(r'\n','',jy_name)
-            # raw_str=urllib2.quote(jy_name)
-            url=url_baidu+jy_name
-            # return HttpResponse(url)
-            # return HttpResponse(url)
-            # web=urllib2.urlopen(url).read()
-
+            jy_name=jy_name.encode('utf-8')
+            # print jy_name
+            jy_name=urllib2.quote(jy_name)
             web=tqjinyanends.sys_input2(jy_name)
-
-
-            # return HttpResponse(web)
+            # print web
             return render_to_response('jy_list.html',{'typeList':t_list,'jy_name':web})
     return render_to_response('jy_list.html',{'typeList':t_list,'errors':errors})
-
-
 
 def system_gl(request):
     t_list=Type.objects.all()
     return render_to_response('system_gl.html',{'typeList':t_list})
+
+def test_gl(request):
+    t_list=Type.objects.all()
+    return render_to_response('test_gl.html',{'typeList':t_list})
+
+
+def search(request):
+    if 'q' in request.GET:
+        message = request.GET['q']
+    else:
+        message = "No"
+    return HttpResponse(message)

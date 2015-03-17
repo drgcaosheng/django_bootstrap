@@ -10,7 +10,12 @@
         {% endif %}
         <!--#keyword: 具体短链接地址,发布时间,标题,平均每天浏览量,更新时间,总浏览量,链接地址-->
         {% if jy_name %}
-
+            {% ifequal jy_name 'ERROR' %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Warning! 连接过于频繁</strong>
+                </div>
+            {% else %}
                 <table class="table table-hover">
                    <caption>百度用户经验列表</caption>
                    <thead>
@@ -23,7 +28,7 @@
                       </tr>
                    </thead>
                    <tbody>
-                   {% for k,v in jy_name.items %}
+                      {% for k,v in jy_name.items %}
                       <tr>
                          <td>{{ v.2 }}</td>
                          <td>{{ v.1 }}</td>
@@ -31,10 +36,11 @@
                          <td>{{ v.5 }}</td>
                          <td><a target="_blank" href="{{ v.6 }}">{{ v.6 }}</a></td>
                       </tr>
-                   {% endfor %}
+                      {% endfor %}
+                   {% endifequal %}
+
                    </tbody>
                 </table>
-
         {% else %}
             <form class="navbar-form navbar-left" role="search" action="" method="get">
                 <p class="navbar-text">请输入用户的百度经验ID帐号：</p>
