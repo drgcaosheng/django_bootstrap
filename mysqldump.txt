@@ -91,14 +91,57 @@ SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit"
 SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')
 2.查用户的ID.
 SELECT mailbox_id FROM `co_department_member` where dept_id in (69,71)
-3.将查询出来的数据,以伪列的查询方式.添加至相关的表中.
+3.将查询出来的数据,以伪列的查询方式.添加至相关的表中.<此语句用于更改某个用户部门所有的查看通讯录的权限>
 
-INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value)
+INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value) 
 SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit") as item ,(@value:="1")as value FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商'));
+
 4.将某个部门下面所有的用户都设置为不显示在通讯录中.
 UPDATE `umail`.`co_user` SET `oabshow` = '-1' WHERE `co_user`.`mailbox_id` in (SELECT mailbox_id FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')));
+
 5.更改某个部门是否可以收发邮件.
 update core_mailbox set limit_recv='2' where mailbox_id in (SELECT mailbox_id FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')))
+update core_mailbox set limit_send='1' where mailbox_id in (SELECT mailbox_id FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商','转换器经销商')))
 
 6.写信右边的单位通讯录.有些是中文.有些是英文.
 update userlist,mailuserinfo set mailuserinfo.realname=userlist.fullname where userlist.userid=mailuserinfo.userid
+
+
+
+
+
+
+
+
+
+g1000001@gongniu.cn
+g1002545@gongniu.cn
+SELECT * FROM `wm_addrbook_map` where mailbox_id in (
+SELECT mailbox_id FROM `co_user` where mailbox_id in (select mailbox_id from core_mailbox where mailbox='g1002611@gongniu.cn' or mailbox='g1002545@gongniu.cn')
+
+g1000001@gongniu.cn        <仅显示本部门>       1128
+g1002545@gongniu.cn        <显示所有部门>       2976
+
+2852
+
+
+
+mailbox_id='2976' or mailbox_id='3025'
+
+SELECT * FROM `co_user_attr` where mailbox_id in (select mailbox_id from core_mailbox where mailbox='g1000001@gongniu.cn' or mailbox='g1002545@gongniu.cn')
+
+SELECT * FROM `co_user_attr` where mailbox_id in (SELECT mailbox_id FROM `co_department_member` where dept_id in (71)) and item='dept_view_permit'
+
+
+
+#1062 - duplicate entry '922-manage-dept-view-permit' for key 'idx_unique'
+
+
+
+INSERT INTO co_user_attr(mailbox_id,domain_id,type,item,value) 
+SELECT mailbox_id,domain_id,(@type:="manage") as type,(@item:="dept_view_permit") as item ,(@value:="1")as value FROM `co_department_member` where dept_id in (SELECT id FROM `co_department` where title in ('墙开经销商'))
+
+
+
+1950
+
