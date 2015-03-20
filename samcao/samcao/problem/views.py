@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from samcao.problem.models import System,Type,Way
+from samcao.problem.models import System,Type,Way,User
 
 import tqjinyanends
 import cookielib
@@ -16,7 +16,9 @@ def index(request):
 
 def add_way(request):
     t_list=Type.objects.all()
-    return render_to_response('add_way.html',{'typeList':t_list})
+    username=User.objects.filter(user_name='test')[0]
+    system_list = System.objects.all()
+    return render_to_response('add_way.html',{'typeList':t_list,'username':username,'system_list':system_list})
 
 def jy_list(request):
     errors=[]
@@ -51,3 +53,7 @@ def search(request):
     else:
         message = "No"
     return HttpResponse(message)
+
+def qy_email(request):
+    t_list=Type.objects.all()
+    return render_to_response('qy_email.html',{'typeList':t_list})

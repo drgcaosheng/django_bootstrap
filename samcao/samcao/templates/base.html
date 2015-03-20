@@ -25,10 +25,11 @@
              <li class="active"><a href="/">首页</a></li>
              <li><a href="/add_way/">添加问题</a></li>
               <li><a href="/system_gl/">系统类型管理</a></li>
-              <li><a href="#">用户管理</a></li>
-              <li><a href="#">问题类型管理</a></li>
-              <li><a href="#">问题列表</a></li>
-              <li><a href="/jy_list/">获取用户经验列表</a></li>
+              <!--<li><a href="#">用户管理</a></li>-->
+              <!--<li><a href="#">问题类型管理</a></li>-->
+              <!--<li><a href="#">问题列表</a></li>-->
+              <li><a href="/jy_list/">获取百度经验列表</a></li>
+              <li><a href="/qy_email/">迁移用户邮件</a></li>
           </ul>
        </div>
         <!--导航层搜索框-->
@@ -50,7 +51,7 @@
             </a>
                 {% block way_system %}
                     {% for type in typeList %}
-                        <a href="#" class="list-group-item">{{ type }}</a>
+                        <a href="#" class="list-group-item">{{ type.way_type }}</a>
                     {% endfor %}
                 {% endblock %}
             <!--<a href="#" class="list-group-item">Linux系统管理后台</a>-->
@@ -99,5 +100,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/qyemail.js"></script>
   </body>
 </html>
