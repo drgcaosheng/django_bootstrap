@@ -1,0 +1,2 @@
+配置反向代理做内网域名转发
+http://www.ttlsa.com/nginx/use-nginx-proxy/

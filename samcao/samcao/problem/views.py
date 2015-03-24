@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from samcao.problem.models import System,Type,Way,User
+from samcao.problem.forms import OldEmailBox
 
 import tqjinyanends
 import cookielib
@@ -56,4 +57,5 @@ def search(request):
 
 def qy_email(request):
     t_list=Type.objects.all()
-    return render_to_response('qy_email.html',{'typeList':t_list})
+    form = OldEmailBox()
+    return render_to_response('qy_email.html',{'typeList':t_list,'form':form})
