@@ -3,6 +3,10 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from samcao.problem.models import System,Type,Way,User
 from samcao.problem.forms import OldEmailBox
+#POST
+from django.template import RequestContext
+#testmailbox
+import testemail
 
 import tqjinyanends
 import cookielib
@@ -56,6 +60,58 @@ def search(request):
     return HttpResponse(message)
 
 def qy_email(request):
+    errors=[]
+    if request.method=='POST':
+        if not request.REQUEST.get('inputMailServer3',''):
+            errors.append('Enter a Mail Server!')
+        if not request.REQUEST.get('inputEmail3',''):
+            errors.append('Enter a Email Address!')
+        if not request.REQUEST.get('inputPassword3',''):
+            errors.append('Enter a Password!')
+        if request.REQUEST.get('inputEmail3','') and '@' not in request.REQUEST['inputEmail3']:
+            errors.append('Enter a valid e-mail address.')
+        print errors
+        if not errors:
+            mailServer = request.POST.get('inputMailServer3','')
+            emailAddress = request.POST.get('inputEmail3','')
+            passWord = request.POST.get('inputPassword3','')
+            ssl = request.POST.get('ssl','')
+            #message = mailserver +'|'+ emailaddress +'|'+ password +'|'+ssl
+            message= testemail.runTestOldMailbox(mailServer,emailAddress,passWord,ssl)
+            return HttpResponse(message)
     t_list=Type.objects.all()
-    form = OldEmailBox()
-    return render_to_response('qy_email.html',{'typeList':t_list,'form':form})
+    return render_to_response('qy_email.html',{
+        'typeList':t_list,
+        'inputMailServer3':request.REQUEST.get('inputMailServer3',''),
+        'inputEmail3':request.REQUEST.get('inputEmail3',''),
+        'inputPassword3':request.REQUEST.get('inputPassword3',''),
+        'errors':errors
+    },context_instance=RequestContext(request))
+
+
+def qy_emailtest(request):
+    message = request.REQUEST.get('inputMailServer3','')
+    return HttpResponse(message)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

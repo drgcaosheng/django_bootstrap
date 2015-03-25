@@ -1,42 +1,50 @@
 {% extends "base.html" %}
 {% block menu_list %}
+        {% if errors %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for error in errors %}
+                    <strong>Warning!</strong> {{ error }}.<br/>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="page-header" >
               <h2>需要被迁移的邮箱地址</h2>
         </div>
-        <div class="jumbotron">
-            <form class="form-horizontal" action="" method="get">
-                <table>
-                    {{ form.as_table }}
-                </table>
-            </form>
-            <!--<form class="form-horizontal" action="" method="get">-->
-              <!--<div class="form-group">-->
-                <!--<label for="inputEmail3" class="col-sm-2 control-label">IMAP 服务器：</label>-->
-                <!--<div class="col-sm-5">-->
-                  <!--<input type="email" class="form-control" id="inputMailServer3" placeholder="MailServer">-->
-                <!--</div>-->
-                  <!--<p id="tsoldmailserver"></p>-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="inputEmail3" class="col-sm-2 control-label">邮箱地址：</label>-->
-                <!--<div class="col-sm-5">-->
-                  <!--<input type="email" class="form-control" id="inputEmail3" placeholder="Email">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="inputPassword3" class="col-sm-2 control-label">密码： </label>-->
-                <!--<div class="col-sm-5">-->
-                  <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<div class="col-sm-offset-2 col-sm-5">-->
-                  <!--<button type="submit" class="btn btn-default" id="testOldMail" >检测邮箱</button>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</form>-->
-        </div>
-    <hr>
+            <form class="form-horizontal" action="" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">IMAP 服务器：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputMailServer3" placeholder="MailServer" name="inputMailServer3" value="{{ inputMailServer3 }}">
+                            </div>
+                          <p id="tsoldmailserver"></p>
+                  </div>
 
+                  <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">邮箱地址：</label>
+                            <div class="col-sm-5">
+                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="inputEmail3" value="{{ inputEmail3 }}">
+                            </div>
+                  </div>
+
+                  <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">密码： </label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="inputPassword3" value="{{ inputPassword3 }}">
+                        </div>
+                  </div>
+
+
+                  <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-5">
+                            <input type="checkbox" name="ssl"> SSL
+                            <button type="submit" class="btn btn-default" id="testOldMail" >检测邮箱</button>
+                        </div>
+                  </div>
+
+            </form>
+
+        <hr>
 
 {% endblock %}
