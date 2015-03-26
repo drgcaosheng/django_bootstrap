@@ -60,6 +60,7 @@ def search(request):
     return HttpResponse(message)
 
 def qy_email(request):
+    t_list=Type.objects.all()
     errors=[]
     if request.method=='POST':
         if not request.REQUEST.get('inputMailServer3',''):
@@ -70,16 +71,25 @@ def qy_email(request):
             errors.append('Enter a Password!')
         if request.REQUEST.get('inputEmail3','') and '@' not in request.REQUEST['inputEmail3']:
             errors.append('Enter a valid e-mail address.')
-        print errors
         if not errors:
             mailServer = request.POST.get('inputMailServer3','')
             emailAddress = request.POST.get('inputEmail3','')
             passWord = request.POST.get('inputPassword3','')
             ssl = request.POST.get('ssl','')
-            #message = mailserver +'|'+ emailaddress +'|'+ password +'|'+ssl
+            #message=mailServer+'|'+emailAddress+'|'+passWord+'|'+ssl
+            #print message
             message= testemail.runTestOldMailbox(mailServer,emailAddress,passWord,ssl)
-            return HttpResponse(message)
-    t_list=Type.objects.all()
+            if str(message).upper()=='TRUE':
+                print str(message).upper()
+                message='TRUE'
+            return render_to_response('qy_email.html',{'typelist':t_list,
+													   'message':message,
+													   'inputMailServer3':request.REQUEST.get('inputMailServer3',''),
+													   'inputEmail3':request.REQUEST.get('inputEmail3',''),
+													   'inputPassword3':request.REQUEST.get('inputPassword3',''),
+													   'errors':errors
+			},context_instance=RequestContext(request))
+	    #return render_to_response('qy_email.html',{'typeList':t_list,'newMailServer':message})
     return render_to_response('qy_email.html',{
         'typeList':t_list,
         'inputMailServer3':request.REQUEST.get('inputMailServer3',''),

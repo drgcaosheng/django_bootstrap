@@ -18,4 +18,16 @@ def testServer():
 		return ex
 
 def runTestOldMailbox(*argv):
-    return argv
+	try:
+		if argv[3].upper()=='ON':
+			testMailServer=imaplib.IMAP4_SSL(argv[0])
+		else:
+			testMailServer=imaplib.IMAP4(argv[0])
+		mLogin=testMailServer.login(argv[1],argv[2])
+		if mLogin[0]=='OK':
+			testMailServer.logout()
+			return True
+	except Exception,ex:
+		return ex
+
+

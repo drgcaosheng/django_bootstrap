@@ -8,10 +8,21 @@
                 {% endfor %}
             </div>
         {% endif %}
+        {% if message %}
+            {% ifequal message 'TRUE' %}
+                {{ message }}
+            {% else %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> {{ message }}.<br/>
+                </div>
+            {% endifequal %}
+        {% endif %}
+
         <div class="page-header" >
               <h2>需要被迁移的邮箱地址</h2>
         </div>
-            <form class="form-horizontal" action="" method="post">
+        <form class="form-horizontal" action="" method="post">
                   {% csrf_token %}
                   <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">IMAP 服务器：</label>
@@ -44,7 +55,6 @@
                   </div>
 
             </form>
-
         <hr>
 
 {% endblock %}
