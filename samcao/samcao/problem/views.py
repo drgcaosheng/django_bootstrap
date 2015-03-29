@@ -13,6 +13,7 @@ import cookielib
 import datetime,time
 import os,sys,time,urllib2,re,urllib
 import multiprocessing
+import os
 
 def index(request):
     t_list=Type.objects.all()
@@ -61,41 +62,90 @@ def search(request):
 
 def qy_email(request):
     t_list=Type.objects.all()
-    errors=[]
+    olderrors=[]
+    newerrors=[]
+    oldmessage=[]
+    newmessage=[]
     if request.method=='POST':
-        if not request.REQUEST.get('inputMailServer3',''):
-            errors.append('Enter a Mail Server!')
-        if not request.REQUEST.get('inputEmail3',''):
-            errors.append('Enter a Email Address!')
-        if not request.REQUEST.get('inputPassword3',''):
-            errors.append('Enter a Password!')
-        if request.REQUEST.get('inputEmail3','') and '@' not in request.REQUEST['inputEmail3']:
-            errors.append('Enter a valid e-mail address.')
-        if not errors:
-            mailServer = request.POST.get('inputMailServer3','')
-            emailAddress = request.POST.get('inputEmail3','')
-            passWord = request.POST.get('inputPassword3','')
-            ssl = request.POST.get('ssl','')
-            #message=mailServer+'|'+emailAddress+'|'+passWord+'|'+ssl
-            #print message
-            message= testemail.runTestOldMailbox(mailServer,emailAddress,passWord,ssl)
-            if str(message).upper()=='TRUE':
-                print str(message).upper()
-                message='TRUE'
-            return render_to_response('qy_email.html',{'typelist':t_list,
-													   'message':message,
-													   'inputMailServer3':request.REQUEST.get('inputMailServer3',''),
-													   'inputEmail3':request.REQUEST.get('inputEmail3',''),
-													   'inputPassword3':request.REQUEST.get('inputPassword3',''),
-													   'errors':errors
+        if not request.REQUEST.get('inputoldmailserver',''):
+            olderrors.append('Enter a Mail Server!')
+        if not request.REQUEST.get('inputoldemail',''):
+            olderrors.append('Enter a Email Address!')
+        if not request.REQUEST.get('inputoldpassword',''):
+            olderrors.append('Enter a Password!')
+        if request.REQUEST.get('inputoldemail','') and '@' not in request.REQUEST['inputoldemail']:
+            olderrors.append('Enter a valid e-mail address.')
+
+        if not request.REQUEST.get('inputnewmailserver',''):
+            newerrors.append('Enter a Mail Server!')
+        if not request.REQUEST.get('inputnewemail',''):
+            newerrors.append('Enter a Email Address!')
+        if not request.REQUEST.get('inputnewpassword',''):
+            newerrors.append('Enter a Password!')
+        if request.REQUEST.get('inputnewemail','') and '@' not in request.REQUEST['inputnewemail']:
+            newerrors.append('Enter a valid e-mail address.')
+        # print olderrors
+        # print newerrors
+        if not olderrors and not newerrors:
+            oldmailServer = request.POST.get('inputoldmailserver','')
+            oldemailAddress = request.POST.get('inputoldemail','')
+            oldpassWord = request.POST.get('inputoldpassword','')
+            oldssl = request.POST.get('oldssl','')
+
+            newmailServer = request.POST.get('inputnewmailserver','')
+            newemailAddress = request.POST.get('inputnewemail','')
+            newpassWord = request.POST.get('inputnewpassword','')
+            newssl = request.POST.get('newssl','')
+            # print olderrors
+            # print newerrors
+            csoldEmail=str(testemail.runTestOldMailbox(oldmailServer,oldemailAddress,oldpassWord,oldssl))
+            csnewEmail=str(testemail.runTestOldMailbox(newmailServer,newemailAddress,newpassWord,newssl))
+            if csoldEmail.upper()=='TRUE' and csnewEmail.upper()=='TRUE':
+                if oldmailServer==newmailServer and oldemailAddress==newemailAddress:
+                    allmessage="Old email address is the same with the new email address !!!"
+                    return render_to_response('qy_email.html',{'typeList':t_list,
+													   'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
+													   'inputoldemail':request.REQUEST.get('inputoldemail',''),
+													   'inputoldpassword':request.REQUEST.get('inputoldpassword',''),
+													   'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
+													   'inputnewemail':request.REQUEST.get('inputnewemail',''),
+													   'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
+													   'allmessage':allmessage,
+													   'oldmessage':oldmessage,
+													   'newmessage':newmessage,
+													   'olderrors':olderrors,
+													   'newerrors':newerrors
+			},context_instance=RequestContext(request))
+                else:
+                    te=oldmailServer+"-"+oldemailAddress+"-"+oldpassWord
+                    print os.getcwd()
+                    return HttpResponse(te)
+            else:
+                newmessage.append(csnewEmail)
+                oldmessage.append(csoldEmail)
+                return render_to_response('qy_email.html',{'typeList':t_list,
+													   'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
+													   'inputoldemail':request.REQUEST.get('inputoldemail',''),
+													   'inputoldpassword':request.REQUEST.get('inputoldpassword',''),
+													   'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
+													   'inputnewemail':request.REQUEST.get('inputnewemail',''),
+													   'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
+													   'oldmessage':oldmessage,
+													   'newmessage':newmessage,
+													   'olderrors':olderrors,
+													   'newerrors':newerrors
 			},context_instance=RequestContext(request))
 	    #return render_to_response('qy_email.html',{'typeList':t_list,'newMailServer':message})
     return render_to_response('qy_email.html',{
         'typeList':t_list,
-        'inputMailServer3':request.REQUEST.get('inputMailServer3',''),
-        'inputEmail3':request.REQUEST.get('inputEmail3',''),
-        'inputPassword3':request.REQUEST.get('inputPassword3',''),
-        'errors':errors
+        'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
+        'inputoldemail':request.REQUEST.get('inputoldemail',''),
+        'inputoldpassword':request.REQUEST.get('inputoldpassword',''),
+		'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
+		'inputnewemail':request.REQUEST.get('inputnewemail',''),
+		'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
+		'olderrors':olderrors,
+        'newerrors':newerrors
     },context_instance=RequestContext(request))
 
 
