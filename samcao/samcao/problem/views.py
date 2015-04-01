@@ -66,6 +66,7 @@ def qy_email(request):
     newerrors=[]
     oldmessage=[]
     newmessage=[]
+    allmessage=''
     if request.method=='POST':
         if not request.REQUEST.get('inputoldmailserver',''):
             olderrors.append('Enter a Mail Server!')
@@ -84,8 +85,7 @@ def qy_email(request):
             newerrors.append('Enter a Password!')
         if request.REQUEST.get('inputnewemail','') and '@' not in request.REQUEST['inputnewemail']:
             newerrors.append('Enter a valid e-mail address.')
-        # print olderrors
-        # print newerrors
+
         if not olderrors and not newerrors:
             oldmailServer = request.POST.get('inputoldmailserver','')
             oldemailAddress = request.POST.get('inputoldemail','')
@@ -103,19 +103,6 @@ def qy_email(request):
             if csoldEmail.upper()=='TRUE' and csnewEmail.upper()=='TRUE':
                 if oldmailServer==newmailServer and oldemailAddress==newemailAddress:
                     allmessage="Old email address is the same with the new email address !!!"
-                    return render_to_response('qy_email.html',{'typeList':t_list,
-													   'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
-													   'inputoldemail':request.REQUEST.get('inputoldemail',''),
-													   'inputoldpassword':request.REQUEST.get('inputoldpassword',''),
-													   'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
-													   'inputnewemail':request.REQUEST.get('inputnewemail',''),
-													   'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
-													   'allmessage':allmessage,
-													   'oldmessage':oldmessage,
-													   'newmessage':newmessage,
-													   'olderrors':olderrors,
-													   'newerrors':newerrors
-			},context_instance=RequestContext(request))
                 else:
                     te=oldmailServer+"-"+oldemailAddress+"-"+oldpassWord
                     print os.getcwd()
@@ -123,19 +110,6 @@ def qy_email(request):
             else:
                 newmessage.append(csnewEmail)
                 oldmessage.append(csoldEmail)
-                return render_to_response('qy_email.html',{'typeList':t_list,
-													   'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
-													   'inputoldemail':request.REQUEST.get('inputoldemail',''),
-													   'inputoldpassword':request.REQUEST.get('inputoldpassword',''),
-													   'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
-													   'inputnewemail':request.REQUEST.get('inputnewemail',''),
-													   'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
-													   'oldmessage':oldmessage,
-													   'newmessage':newmessage,
-													   'olderrors':olderrors,
-													   'newerrors':newerrors
-			},context_instance=RequestContext(request))
-	    #return render_to_response('qy_email.html',{'typeList':t_list,'newMailServer':message})
     return render_to_response('qy_email.html',{
         'typeList':t_list,
         'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
@@ -144,6 +118,9 @@ def qy_email(request):
 		'inputnewmailserver':request.REQUEST.get('inputnewmailserver',''),
 		'inputnewemail':request.REQUEST.get('inputnewemail',''),
 		'inputnewpassword':request.REQUEST.get('inputnewpassword',''),
+        'allmessage':allmessage,
+        'oldmessage':oldmessage,
+        'newmessage':newmessage,
 		'olderrors':olderrors,
         'newerrors':newerrors
     },context_instance=RequestContext(request))
