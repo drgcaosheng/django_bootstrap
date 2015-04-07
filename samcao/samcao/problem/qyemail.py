@@ -327,13 +327,13 @@ def allmail(*argv):
 
 #用于排列邮件夹列表
 def mail_dir(mlist):
-    # mail_list=[]
-    a=['INBOX']
-    # for listone in mlist[1]:
-    	# mail_list.append(listone.strip('"').split('"')[-1].strip(' '))
+    mail_list=[]
+    # a=['INBOX']
+    for listone in mlist[1]:
+    	mail_list.append(listone.strip('"').split('"')[-1].strip(' '))
     # print mail_list
-    # return mail_list
-    return a
+    return mail_list
+    # return a
 
 #此方法用于读出文件中的数据，传回一个数据列表。
 def readName(*argv):

@@ -100,16 +100,18 @@ def qy_email(request):
             # print newerrors
             csoldEmail=str(testemail.runTestOldMailbox(oldmailServer,oldemailAddress,oldpassWord,oldssl))
             csnewEmail=str(testemail.runTestOldMailbox(newmailServer,newemailAddress,newpassWord,newssl))
+            # print csoldEmail
             if csoldEmail.upper()=='TRUE' and csnewEmail.upper()=='TRUE':
                 if oldmailServer==newmailServer and oldemailAddress==newemailAddress:
                     allmessage="Old email address is the same with the new email address !!!"
                 else:
                     te=oldmailServer+"-"+oldemailAddress+"-"+oldpassWord
-                    print os.getcwd()
-                    return HttpResponse(te)
+                    testemail.qiyiold(oldmailServer,oldemailAddress,oldpassWord,oldssl,newmailServer,newemailAddress,newpassWord,newssl)
+                    return render_to_response('qdqyemail.html')
+
             else:
-                newmessage.append(csnewEmail)
-                oldmessage.append(csoldEmail)
+                newerrors.append(csnewEmail)
+                olderrors.append(csoldEmail)
     return render_to_response('qy_email.html',{
         'typeList':t_list,
         'inputoldmailserver':request.REQUEST.get('inputoldmailserver',''),
