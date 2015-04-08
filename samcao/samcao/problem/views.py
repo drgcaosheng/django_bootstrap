@@ -106,8 +106,9 @@ def qy_email(request):
                     allmessage="Old email address is the same with the new email address !!!"
                 else:
                     te=oldmailServer+"-"+oldemailAddress+"-"+oldpassWord
-                    testemail.qiyiold(oldmailServer,oldemailAddress,oldpassWord,oldssl,newmailServer,newemailAddress,newpassWord,newssl)
-                    return render_to_response('qdqyemail.html')
+                    qy_email=testemail.qiyiold(oldmailServer,oldemailAddress,oldpassWord,oldssl,newmailServer,newemailAddress,newpassWord,newssl)
+                    qy_email=str(qy_email).upper()
+                    return render_to_response('qdqyemail.html',{'qy_email':qy_email,'oldemailAddress':oldemailAddress,'newemailAddress':newemailAddress})
 
             else:
                 newerrors.append(csnewEmail)

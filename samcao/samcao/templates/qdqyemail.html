@@ -1,4 +1,14 @@
 {% extends "base.html" %}
 {% block menu_list %}
-
+    <!--{% print qy_email %}-->
+    {% ifequal qy_email 'TRUE' %}
+        <div class="jumbotron">
+            <h4>{{ oldemailAddress }}      >>      {{ newemailAddress }}</h4>
+            <h3>迁移完成!!!</h3>
+        </div>
+    {% else %}
+        <div class="jumbotron">
+            <div class="alert alert-warning" role="alert">{{ qy_email }}</div>
+        </div>
+    {% endifequal %}
 {% endblock %}

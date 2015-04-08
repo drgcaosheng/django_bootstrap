@@ -14,13 +14,13 @@ error_log='errorUser.log'
 corr_user='correctuser.txt'
 default_dir=os.getcwd()
 
-def testServer():
-	try:
-		M=imaplib.IMAP4(argv[0])
-		M.logout()
-		return True
-	except Exception,ex:
-		return ex
+# def testServer():
+# 	try:
+# 		M=imaplib.IMAP4(argv[0])
+# 		M.logout()
+# 		return True
+# 	except Exception,ex:
+# 		return ex
 
 def runTestOldMailbox(*argv):
     try:
@@ -38,146 +38,120 @@ def runTestOldMailbox(*argv):
 
 def qiyiold(*argv):
     try:
-        if argv[3].upper()=='ON':
-            testMailServer=imaplib.IMAP4_SSL(argv[0])
+        print 'start'
+        uid_temp_list=[]
+        mailbox_temp=""
+        oldMailServer=argv[0]
+        oldEmailAddress=argv[1]
+        oldPassWord=argv[2]
+        oldSsl_check=argv[3]
+
+        newMailServer=argv[4]
+        newEmailAddress=argv[5]
+        newPassWord=argv[6]
+        newSsl_check=argv[7]
+
+        if oldSsl_check.upper()=='ON':
+            oldemail_M=imaplib.IMAP4_SSL(oldMailServer)
         else:
-            testMailServer=imaplib.IMAP4(argv[0])
-        mLogin=testMailServer.login(argv[1],argv[2])
-        # print mLogin
-        if mLogin[0]=='OK':
-            testMailServer.logout()
-            return True
+            oldemail_M=imaplib.IMAP4(oldMailServer)
+
+        if newSsl_check.upper()=='ON':
+            newemail_M=imaplib.IMAP4_SSL(newMailServer)
+        else:
+            newemail_M=imaplib.IMAP4(newMailServer)
+
+        oldemail_M.login(oldEmailAddress,oldPassWord)
+        newemail_M.login(newEmailAddress,newPassWord)
+
+        maildir_l=mail_dir(oldemail_M.list())
+        userNumMail=0
+        userAllMail=0
+        oldemail_M.noop()
+        newemail_M.noop()
+
+        for mailbox in maildir_l:
+            userNumMail=int(oldemail_M.select(mailbox)[1][0])
+            userAllMail+=userNumMail
+            print '<%s> <%s> <%s>'%(oldEmailAddress,mailbox,userNumMail)
+        print 'User: <%s> EmailNum: <%s>.'%(oldEmailAddress,userAllMail)
+
+        print 'Start qianyi mail....'
+
+        for mailbox in maildir_l:
+            oldemail_M.select(mailbox)
+            #判断是否存在文件夹,不存在则进行创建
+            if newemail_M.select(mailbox)[0]<>'OK':
+                print 'Not mailbox <%s>, Create mailbox <%s>.'%(mailbox,newemail_M.create(mailbox)[1])
+                # newemail_M.create(mailbox)
+                newemail_M.select(mailbox)
+
+
+            old_typ_n,old_data_n=newemail_M.search(None,'ALL')
+            oldmailid_n=old_data_n[0].split()
+            userNumMail=int(oldemail_M.select(mailbox)[1][0])
+            uidlist = panDuanUserBox(oldMailServer,oldEmailAddress,mailbox)
+            uid_temp_list=uidlist
+            typ,data=oldemail_M.search(None,'SEEN')
+            for num in data[0].split():
+                typ,datauid=oldemail_M.fetch(num,'UID')
+                uid=datauid[0].split(' ')[2][0:-1]
+                if (uid in uidlist):
+                    continue
+                else:
+                    print 'Start downloading...<%s><%s>'%(mailbox,num)
+                    #实现无痕取信,不影响原来服务器上面邮箱中邮件的状态
+                    typ,mdata=oldemail_M.fetch(num,'(UID BODY.PEEK[])')
+                    print 'download success...'
+                    print 'Start upload...'
+
+                    if len(mdata[0][1])<1:
+                        print '<%s> mailbox,num <%s> len=0,continue.'%(mailbox,num)
+                        continue
+                    newemail_M.select(mailbox)
+                    try:
+                        newemail_M.append(mailbox,'',imaplib.Time2Internaldate(time.time()),mdata[0][1])
+                    except Exception,ex:
+                        print 'upload error:<%s><%s><%s><%s>'%(oldEmailAddress,mailbox,num,ex)
+                    uidlist.append(uid)
+                    uid_temp_list=uidlist
+
+            new_typ_n,new_data_n=newemail_M.search(None,'ALL')
+            newmailid_n=new_data_n[0].split()
+            datalist=list(set(oldmailid_n)^set(newmailid_n))
+            for num in datalist:
+                newemail_M.store(num,'+FLAGS','\SEEN')
+            typ,data=oldemail_M.search(None,'UNSEEN')
+
+            for num in data[0].split():
+                typ,datauid=oldemail_M.fetch(num,'UID')
+                uid=datauid[0].split(' ')[2][0:-1]
+                if(uid in uidlist):
+                    continue
+                else:
+                    print 'Start downloading...<%s><%s>'%(mailbox,num)
+                    typ,mdata=oldemail_M.fetch(num,'(UID BODY.PEEK[])')
+                    print 'download success...'
+                    print 'Start upload...'
+                    if len(data[0][1])<1:
+                        print '<%s> mailbox,num <%s> len=0,continue.'%(mailbox,num)
+                        continue
+                    newemail_M.select(mailbox)
+                try:
+                    newemail_M.append(mailbox,'',imaplib.Time2Internaldate(time.time()),mdata[0][1])
+                except Exception,ex:
+                    print 'upload error:<%s><%s><%s><%s>'%(oldEmailAddress,mailbox,num,ex)
+                uidlist.append(uid)
+                uid_temp_list=uidlist
+            writeuid(oldMailServer,oldEmailAddress,mailbox,uidlist)
+        return True
     except Exception,ex:
         return ex
+    finally:
+        writeuid(oldMailServer,oldEmailAddress,mailbox,uid_temp_list)
 
 
-#迁移邮箱的方法
-# def qiyiold(*argv):
-#     uid_temp_list=[]
-#     mailbox_temp=""
-#     try:
-#         if argv[3].upper()=='ON':
-#             testMailServer=imaplib.IMAP4_SSL(argv[0])
-#         else:
-#             testMailServer=imaplib.IMAP4(argv[0])
-#         M=imaplib.IMAP4(argv[0])
-#         M.login(argv[1],argv[2])
-#         N=imaplib.IMAP4(argv[3])
-#         N.login(argv[4],argv[5])
-#         maildir_l=mail_dir(M.list())
-#         userNumMail=0
-#         userAllMail=0
-#         M.noop()
-#         N.noop()
-#         for mailbox in maildir_l:
-#             userNumMail=int(M.select(mailbox)[1][0])
-#             userAllMail+=userNumMail
-#             print '<%s> <%s> <%s>'%(argv[1],mailbox,userNumMail)
-#             print 'User: <%s> EmailNum: <%s>.'%(argv[1],userAllMail)
-#
-#         print 'Start qianyi mail....'
-#
-#         for mailbox in maildir_l:
-#             # print mailbox
-# 			M.select(mailbox)
-#             if N.select(mailbox)[0]<>'OK':
-#                 print 'Not mailbox <%s>, Create mailbox <%s>.'%(mailbox,N.create(mailbox)[1])
-#                 N.select(mailbox)
-#             # N.select(mailbox)
-# 			#
-# 			# 此步更新于20140813
-# 			old_typ_n,old_data_n=N.search(None,'ALL')
-#             oldmailid_n=old_data_n[0].split()
-#             userNumMail=int(M.select(mailbox)[1][0])
-#             uidlist = panDuanUserBox(argv[0],argv[1],mailbox)
-#             uid_temp_list=uidlist
-#             typ,data=M.search(None,'SEEN')
-#             #print 'seen-------'
-#             for num in data[0].split():
-#                 # print num
-#                 typ,datauid=M.fetch(num,'UID')
-#                 uid=datauid[0].split(' ')[2][0:-1]
-#                 if(uid in uidlist):
-#                     continue
-#                 else:
-#                     print 'Start downloading...<%s><%s>'%(mailbox,num)
-#                     #实现无痕取信,不影响原来服务器上面邮箱中邮件的状态
-#                     typ,mdata=M.fetch(num,'(UID BODY.PEEK[])')
-#                     print 'download success...'
-#                     print 'Start upload...'
-#                     # print '01'
-#                     if len(mdata[0][1])<1:
-#                         print '<%s> mailbox,num <%s> len=0,continue.'%(mailbox,num)
-#                         continue
-#                     try:
-#                         # print mailbox
-# 						# print '03'
-# 						N.select(mailbox)
-#                     except Exception,ex:
-#                         print '<%s><%s><%s>email error!!!'%(argv[0],mailbox,num)
-#                         N=imaplib.IMAP4(argv[3])
-#                         N.login(argv[4],argv[5])
-#                         N.select(mailbox)
-#                     # print '02'
-#                     try:
-#                         N.append(mailbox,'',imaplib.Time2Internaldate(time.time()),mdata[0][1])
-#                     except Exception,ex:
-#                         print 'upload error:<%s><%s><%s><%s>'%(argv[1],mailbox,num,ex)
-#                     uidlist.append(uid)
-#                     uid_temp_list=uidlist
-#
-#             #此步更新于20140813
-#             new_typ_n,new_data_n=N.search(None,'ALL')
-#             newmailid_n=new_data_n[0].split()
-#             datalist=list(set(oldmailid_n)^set(newmailid_n))
-#             #
-#
-#             #typ,data=N.search(None,'ALL')
-#             # for num in data[0].split():
-#             for num in datalist:
-#                 N.store(num,'+FLAGS','\SEEN')
-#             typ,data=M.search(None,'UNSEEN')
-#             # print 'unseen--------'
-#             # for num in data[0].split():
-#             	# print num
-#             	# typ,mdata=M.fetch(num,'(UID BODY.PEEK[])')
-#             	# N.append(mailbox,'',imaplib.Time2Internaldate(time.time()),mdata[0][1])
-#
-#             for num in data[0].split():
-#                 # print num
-#                 typ,datauid=M.fetch(num,'UID')
-#                 uid=datauid[0].split(' ')[2][0:-1]
-#                 if(uid in uidlist):
-#                     continue
-#                 else:
-#                     print 'Start downloading...<%s><%s>'%(mailbox,num)
-#                     typ,mdata=M.fetch(num,'(UID BODY.PEEK[])')
-#                     print 'download success...'
-#                     print 'Start upload...'
-#                     if len(data[0][1])<1:
-#                         print '<%s> mailbox,num <%s> len=0,continue.'%(mailbox,num)
-#                         continue
-#                     try:
-#                         N.select(mailbox)
-#                     except Exception,ex:
-#                         print '<%s><%s><%s>email error!!!'%(argv[0],mailbox,num)
-#                         N=imaplib.IMAP4(argv[3])
-#                         N.login(argv[4],argv[5])
-#                         N.select(mailbox)
-#                     try:
-#                         N.append(mailbox,'',imaplib.Time2Internaldate(time.time()),mdata[0][1])
-#                     except Exception,ex:
-#                         print 'upload error:<%s><%s><%s><%s>'%(argv[1],mailbox,num,ex)
-#                     uidlist.append(uid)
-#                     uid_temp_list=uidlist
-#
-#             print ('<%s><%s>OK'%(argv[1],mailbox))
-#             writeuid(argv[0],argv[1],mailbox,uidlist)
-#             # M.close()
-#             # N.close()
-#             # M.logout()
-#             # N.logout()
-#             return True
+
 #将UID写入到文件中.以做记录
 def writeuid(oldserver,oldname,mailbox,uidlist):
     # print os.getcwd()
