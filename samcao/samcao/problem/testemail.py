@@ -133,7 +133,9 @@ def qiyiold(*argv):
                     typ,mdata=oldemail_M.fetch(num,'(UID BODY.PEEK[])')
                     print 'download success...'
                     print 'Start upload...'
-                    if len(data[0][1])<1:
+                    # print data
+                    # print mdata
+                    if len(mdata[0][1])<1:
                         print '<%s> mailbox,num <%s> len=0,continue.'%(mailbox,num)
                         continue
                     newemail_M.select(mailbox)
