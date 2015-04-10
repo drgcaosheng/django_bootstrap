@@ -655,8 +655,8 @@ header CN_SUBJECT_565	Subject =~ /语音短信/
 describe CN_SUBJECT_565	Subject contains "语音短信"
 score CN_SUBJECT_565	0.660
 
-header CN_SUBJECT_572	Subject =~ /  发   ?
-describe CN_SUBJECT_572	Subject contains "  发   ?
+header CN_SUBJECT_572	Subject =~ /  发   ?/
+describe CN_SUBJECT_572	Subject contains "  发   ?"
 score CN_SUBJECT_572	0.490
 
 header CN_SUBJECT_575	Subject =~ /经理必看/
@@ -1594,9 +1594,6 @@ score CN_SUBJECT_1067	1.542
 header CN_SUBJECT_1068	Subject =~ /管理者/
 describe CN_SUBJECT_1068	Subject contains "管理者"
 score CN_SUBJECT_1068	1.542
-
-
-
 
 body CN_BODY_2	/有限公司/
 describe CN_BODY_2	Body contains "有限公司"
