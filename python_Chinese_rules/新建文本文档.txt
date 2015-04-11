@@ -1,0 +1,801 @@
+C:\Python27\python.exe D:/python/django_bootstrap/python_Chinese_rules/pyrules.py
+subject	优惠
+1.254
+subject	合作
+0.233
+subject	发票
+1.055
+subject	实业
+1.226
+subject	代开
+3.460
+subject	票！
+0.039
+subject	各类
+0.015
+subject	财务
+0.050
+subject	运作
+0.532
+subject	节省
+1.500
+subject	事宜
+0.204
+subject	贸易
+0.493
+subject	互利
+1.061
+subject	互惠
+0.997
+subject	商务
+0.780
+subject	税务
+0.351
+subject	酒店
+0.879
+subject	采购
+1.080
+subject	技巧
+0.112
+subject	华利
+0.363
+subject	研修
+1.320
+subject	避税
+1.380
+subject	您的
+0.763
+subject	家电
+1.320
+subject	超低
+0.772
+subject	房价
+1.080
+subject	3000多家
+1.380
+subject	享受全国
+1.380
+subject	阿里
+1.128
+subject	佳和
+0.332
+subject	潜在
+1.320
+subject	摄像机
+1.200
+subject	特价
+1.150
+subject	票据
+1.320
+subject	与您
+0.707
+subject	华隆
+0.034
+subject	\(经理
+2.029
+subject	负责人\(
+0.400
+subject	报关
+1.320
+subject	AD:信息
+0.328
+subject	 发 票
+1.260
+subject	维修
+0.900
+subject	供应
+1.080
+subject	资源在
+1.260
+subject	财富资源
+1.200
+subject	器材
+1.200
+subject	进出口
+1.140
+subject	免费注册
+1.080
+subject	香港公司
+1.200
+subject	实战
+1.140
+subject	打败
+0.853
+subject	尽在
+0.881
+subject	管理与
+0.960
+subject	技能
+0.093
+subject	回复！
+1.320
+subject	企业信息
+0.486
+subject	付款
+1.080
+subject	提升
+0.789
+subject	降低
+0.502
+subject	群发
+1.080
+subject	合办
+0.192
+subject	印刷
+1.080
+subject	用和
+1.080
+subject	家庭用
+1.080
+subject	代  开
+0.726
+subject	贵公司
+1.140
+subject	潮流
+0.523
+subject	2006最新
+1.140
+subject	黎规
+0.345
+subject	机票
+1.020
+subject	时尚数码
+1.080
+subject	、时尚
+1.080
+subject	网上赚钱
+1.020
+subject	运输
+0.023
+subject	主机
+0.900
+subject	邮箱了吗
+0.228
+subject	您改
+0.973
+subject	运用
+1.020
+subject	票0\.5-2%
+0.108
+subject	特惠
+1.020
+subject	验证后
+0.008
+subject	已成为
+0.633
+subject	赚钱已
+0.960
+subject	只需
+0.570
+subject	家庭电脑
+0.960
+subject	外商
+0.960
+subject	\(AD\)高清
+0.960
+subject	友情链接
+0.960
+subject	TO;回复
+0.019
+subject	为您
+1.080
+subject	相商
+0.665
+subject	分享!
+0.900
+subject	管理资料
+0.900
+subject	窃听
+0.780
+subject	网络赚钱
+0.900
+subject	振丰
+0.050
+subject	TO：
+0.877
+subject	报价
+0.840
+subject	航空网
+0.900
+subject	旅游航空
+0.900
+subject	中国旅游
+0.840
+subject	5600元
+0.840
+subject	商管理
+0.329
+subject	网络营销
+0.769
+subject	“电脑
+0.137
+subject	电脑版”
+0.137
+subject	最新“
+0.137
+subject	文件！
+0.840
+subject	客户您好
+0.554
+subject	注塑
+0.780
+subject	闲置
+0.840
+subject	聪促
+1.320
+subject	AD：
+1.080
+subject	票验证
+0.008
+subject	职业化
+0.546
+subject	全套费用
+0.780
+subject	赚钱新
+0.780
+subject	注册香港
+0.780
+subject	回 复
+0.108
+subject	统筹
+0.780
+subject	最新网络
+0.780
+subject	新趋势
+0.780
+subject	）收
+0.780
+subject	宝圣
+0.006
+subject	行政工作
+0.720
+subject	代 开
+1.260
+subject	叉车
+0.780
+subject	准则
+0.660
+subject	高效
+0.780
+subject	高潮
+0.082
+subject	灵活
+0.498
+subject	征集友情
+0.780
+subject	中层
+0.720
+subject	订阅
+0.560
+subject	商机
+0.636
+subject	）您
+0.111
+subject	与薪
+0.780
+subject	文秘职业
+0.720
+subject	宏海
+0.094
+subject	怎样获得
+0.720
+subject	获得更
+0.720
+subject	更强烈
+0.720
+subject	绩效
+1.720
+subject	化训练
+0.900
+subject	高级文秘
+0.720
+subject	您在
+0.720
+subject	的性爱
+0.720
+subject	公司商业
+0.141
+subject	、交通
+0.660
+subject	迪基
+0.138
+subject	中国软件
+0.540
+subject	持久
+0.660
+subject	强烈更
+0.660
+subject	工作邮件
+0.660
+subject	好：
+1.320
+subject	管理高级
+0.660
+subject	节能
+0.600
+subject	软件网
+0.720
+subject	网征集
+0.660
+subject	张伟明
+0.236
+subject	代。
+0.333
+subject	帮手
+0.600
+subject	景兴
+0.115
+subject	语音短信
+0.660
+subject	  发   ?
+0.490
+subject	经理必看
+0.600
+subject	互联网的
+0.600
+subject	供求
+0.600
+subject	商业！
+0.126
+subject	活人
+0.540
+subject	Re:锣盚:
+0.600
+subject	化工、
+0.720
+subject	决策
+0.480
+subject	\.经理
+0.600
+subject	、建筑
+0.426
+subject	建站
+0.540
+subject	季飘
+0.900
+subject	网上免费
+0.540
+subject	 - 李开
+0.540
+subject	物资
+0.082
+subject	    发  
+0.443
+subject	复 Googl
+0.540
+subject	鳖瘤
+0.960
+subject	酬设计
+0.660
+subject	财税
+0.540
+subject	帮你
+0.540
+subject	巴巴
+0.660
+subject	企 业
+0.780
+subject	经典管理
+0.540
+subject	-上\/海
+0.540
+subject	咨询营销
+0.540
+subject	2006经典
+0.540
+subject	营销资料
+0.540
+subject	批发
+0.480
+subject	您分享
+1.020
+subject	工程项目
+0.540
+subject	库与
+0.540
+subject	、协会
+0.540
+subject	名录
+0.540
+subject	公司、
+0.540
+subject	、化工
+0.288
+subject	优 惠
+0.226
+subject	【211job
+0.540
+subject	RO:回复
+0.031
+subject	尊敬的
+0.313
+subject	\,代理
+0.540
+subject	建材
+0.480
+subject	实务
+0.960
+subject	建筑、
+0.720
+subject	美白
+0.420
+subject	、环保
+0.480
+subject	交通、
+0.480
+subject	   票
+1.097
+subject	粤丰
+0.042
+subject	分析与
+0.574
+subject	环保工程
+0.480
+subject	对手
+0.877
+subject	-深\/圳
+0.540
+subject	工艺品
+0.480
+subject	网联
+0.480
+subject	最近还好
+0.480
+subject	价格吗？
+0.480
+subject	全案
+0.444
+subject	咨询策划
+0.480
+subject	阴茎
+0.480
+subject	市场营销
+0.360
+subject	策划项目
+0.480
+subject	大批
+0.420
+subject	重磅
+0.540
+subject	研讨班
+0.540
+subject	国庆中秋
+0.480
+subject	好消息!
+0.480
+subject	开拓
+0.420
+subject	劳动争议
+0.480
+subject	解决方案
+0.360
+subject	协会全套
+0.480
+subject	成人用品
+0.480
+subject	AD;回复
+0.090
+subject	还好吗？
+0.420
+subject	男女情趣
+0.420
+subject	 催情
+0.420
+subject	咨询！
+0.480
+subject	、电力
+0.480
+subject	海洲
+0.309
+subject	商傲
+0.420
+subject	开课！
+0.480
+subject	仿名
+0.660
+subject	注册登陆
+0.420
+subject	高精
+0.540
+subject	-环球
+0.420
+subject	同城
+0.326
+subject	回复；
+0.195
+subject	提供服务
+0.068
+subject	保温
+0.360
+subject	表情
+0.360
+subject	、邮件
+0.420
+subject	爱情公寓
+0.420
+subject	SM 男女
+0.420
+subject	卓越中国
+0.420
+subject	深丰
+0.021
+subject	利器
+0.360
+subject	。代
+0.360
+subject	中秋不
+0.360
+subject	论文征稿
+0.420
+subject	数据中心
+0.360
+subject	不送礼
+0.360
+subject	索取
+0.300
+subject	上海电信
+0.360
+subject	淀粉
+0.360
+subject	电信数据
+0.360
+subject	中华医药
+0.360
+subject	网---
+0.360
+subject	医药化工
+0.360
+subject	公文
+0.360
+subject	丰胸
+0.360
+subject	您要
+0.420
+subject	 - 华晨
+0.360
+subject	祛痘
+0.360
+subject	骏捷
+0.360
+subject	按 1\.5% 
+0.010
+subject	兼容
+0.360
+subject	类论文
+0.360
+subject	昌隆
+0.042
+subject	开店
+0.300
+subject	税！
+0.005
+subject	纤维
+0.360
+subject	您好！节
+0.360
+subject	人机
+0.300
+subject	-北\/京
+0.360
+subject	理财提供
+0.300
+subject	\[上海
+0.300
+subject	4，5月
+0.300
+subject	标准体重
+0.300
+subject	工厂设备
+0.300
+subject	致负责人
+0.069
+subject	可以改变
+0.300
+subject	您就
+0.300
+subject	贺卡
+0.240
+subject	教学平台
+0.300
+subject	贵司
+0.329
+subject	广告：
+0.480
+subject	生产计划
+0.300
+subject	器人
+0.891
+subject	-开-讲
+0.420
+subject	训练营
+0.367
+subject	征稿：
+0.360
+subject	科技类
+0.360
+subject	、医药
+0.300
+subject	\/上-海
+0.420
+subject	短信--
+0.300
+subject	马小姐
+0.300
+subject	段！
+0.300
+subject	与关怀
+0.300
+subject	拓展与
+0.300
+subject	达公司
+0.001
+subject	裕强
+0.185
+subject	新手
+0.300
+subject	--客户
+0.300
+subject	体重测量
+0.300
+subject	可代
+0.047
+subject	获取
+0.240
+subject	AD在线
+0.300
+subject	客户拓展
+0.300
+subject	在线标准
+0.300
+subject	关怀的
+0.300
+subject	生活!
+0.240
+subject	成交
+0.300
+subject	代理公司
+0.274
+subject	智通
+0.145
+subject	改变现在
+0.300
+subject	论文和
+0.300
+subject	本公司
+3.300
+subject	各种国税
+3.300
+subject	胜任力
+1.186
+subject	评估
+1.061
+subject	激励技巧
+2.933
+subject	高级训练
+2.431
+subject	野蛮成长
+2.832
+subject	沟通管理的内容
+2.943
+subject	商城男鞋
+2.452
+subject	最舒适的选择
+2.313
+subject	平衡计分卡
+2.403
+subject	优惠
+1.566
+subject	怎么办
+2.873
+subject	如何
+1.284
+subject	工厂现场
+2.077
+subject	供应商的能力
+1.369
+subject	哪个
+1.609
+subject	技巧
+1.591
+subject	成功
+1.647
+subject	销售技巧
+1.397
+subject	共同愿景
+1.802
+subject	个人目标
+2.444
+subject	危机
+1.437
+subject	挫折
+1.208
+subject	面对
+2.293
+subject	秘诀
+2.129
+subject	数据规划
+2.93
+subject	高级应用
+1.139
+subject	代办
+2.916
+subject	大公司的支持
+2.134
+subject	各项目齐备
+2.299
+subject	诚信为本
+1.542
+subject	速通达
+2.542
+subject	领导力
+1.542
+subject	大数据
+1.542
+subject	营销数据
+1.542
+subject	分析技能
+1.542
+subject	经营模式
+1.542
+subject	阿米巴
+1.542
+subject	利润
+1.542
+subject	门店管理
+1.542
+subject	核心
+1.542
+subject	零缺陷
+1.542
+subject	角色转换
+1.542
+subject	提升企业
+1.542
+subject	服务水平
+1.542
+subject	快速解决
+1.542
+subject	运用技巧
+1.542
+subject	销售部门的业绩为什么会下滑
+10.54
+subject	国际贸易
+1.542
+subject	公司做帐
+1.542
+subject	高效仓储管理
+1.542
+subject	物流配送
+1.542
+subject	领导力
+1.542
+subject	执行力
+1.542
+subject	成人电影
+10.54
+subject	海量高清
+10.54
+subject	研发团队
+1.542
+subject	离职风险
+1.542
+subject	如何书写
+1.542
+subject	车间主任
+1.542
+subject	分析技术
+1.542
+subject	国际汽配
+1.542
+subject	惊爆
+5.542
+subject	全国专线
+1.542
+subject	B2C
+1.542
+subject	部门主管
+1.542
+subject	管理者
+1.542
+
+Process finished with exit code 0
