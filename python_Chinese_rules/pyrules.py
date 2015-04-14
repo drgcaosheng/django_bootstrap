@@ -68,6 +68,7 @@ class createRules:
         self.filename="jl_wtchinese_rules.txt"
         self.subjectList=[]
         self.bodyList=[]
+        self.create_Rules="chinese_rules.cf"
 
     def readTq(self):
         f=open(self.filename,'r')
@@ -83,9 +84,8 @@ class createRules:
         for subject_one in self.subjectList:
             subjectName=subject_one.split('\t')[1]
             subjectNumber=subject_one.split('\t')[2]
-            print 'header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subjectName+'/'
-            print 'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subjectName+'"'
-            print 'score CN_SUBJECT_'+str(i)+'\t'+subjectNumber
+            wsub='header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subjectName+'/\r\n'+'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subjectName+'"\r\n'+'score CN_SUBJECT_'+str(i)+'\t'+subjectNumber+"\r\n"
+            self.writeFile(wsub)
             i+=1
 
     def writeBody(self):
@@ -95,15 +95,27 @@ class createRules:
             # print body_one
             bodyName=body_one.split('\t')[1]
             bodyNumber=body_one.split('\t')[2]
-            print 'body CN_BODY_'+str(i)+'\t'+'/'+bodyName+'/'
-            print 'describe CN_BODY_'+str(i)+'\tBody contains "'+bodyName+'"'
-            print 'score CN_BODY_'+str(i)+'\t'+bodyNumber
+            wtbody='body CN_BODY_'+str(i)+'\t'+'/'+bodyName+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+bodyName+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+bodyNumber+"\r\n"
+            self.writeFile(wtbody)
+            # print 'body CN_BODY_'+str(i)+'\t'+'/'+bodyName+'/'
+            # print 'describe CN_BODY_'+str(i)+'\tBody contains "'+bodyName+'"'
+            # print 'score CN_BODY_'+str(i)+'\t'+bodyNumber
             i+=1
+    def writeFile(self,argv):
+        print argv
+        create_Rules=open(self.create_Rules,'a+')
+        # for line in argv:
+        create_Rules.write(argv)
+        #     create_Rules.write(argv[0])
+        create_Rules.close()
+
+
 
 
 if __name__=="__main__":
     cr=createRules()
     cr.readTq()
+    cr.writeSubject()
     cr.writeBody()
     # cr.test()
     # tq=tiquchinese()
