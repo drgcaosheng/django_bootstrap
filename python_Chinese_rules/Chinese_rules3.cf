@@ -1643,8 +1643,6 @@ describe CN_SUBJECT_1068	Subject contains "管理者"
 score CN_SUBJECT_1068	1.542
 
 
-
-
 body CN_BODY_2	/有限公司/
 describe CN_BODY_2	Body contains "有限公司"
 score CN_BODY_2	0.001
@@ -2588,3 +2586,5 @@ score CN_BODY_1082	1.903
 body CN_BODY_1083	/处理技巧/
 describe CN_BODY_1083	Body contains "处理技巧"
 score CN_BODY_1083	2.629
+
+

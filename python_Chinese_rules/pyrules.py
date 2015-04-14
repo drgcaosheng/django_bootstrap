@@ -9,9 +9,8 @@ class tiquchinese:
         self.regex_body=re.compile(r'body CN_BODY_.{1,8}/(.{1,60})/')
         self.regex_subnumber=re.compile(r'score CN_SUBJECT_.{1,8}	(.{1,5})')
         self.regex_body_number=re.compile(r'score CN_BODY_.{1,8}	(.{1,5})')
-                # regex_number=re.compile(r'score CN_SUBJECT_.{1,8}	(.{1,5})')
         self.search_header="header CN_SUBJECT_"
-        self.search_body="score CN_SUBJECT_"
+        self.search_body="body CN_BODY_"
         self.alist=[]
         self.alistone=[]
         self.chinese_rules_file="chinese_rules.cf"
@@ -23,81 +22,90 @@ class tiquchinese:
         for line in flines:
             if re.search(self.search_header,line):
                 self.alistone.append("subject")
-                # print "subject"
                 self.alistone.append(self.regex_subject.findall(line)[0])
-                # print self.regex_subject.findall(line)[0]
             if not re.search(self.regex_subnumber,line):
                 continue
-            # print self.regex_subnumber.findall(line)[0]
-            # print line
-
             self.alistone.append(self.regex_subnumber.findall(line)[0])
             self.alist.append(self.alistone)
             self.alistone=[]
-        print self.alist
         f.close()
-'''
+        return self.alist
+
+    def readBody(self):
+        f=open(self.chinese_rules_file,'r')
+        flines=f.readlines()
         for line in flines:
             if re.search(self.search_body,line):
+                # print 'body'
                 self.alistone.append("body")
-                self.alistone.append(self.regex_body_number.findall(line)[0])
+                # print self.regex_body.findall(line)[0]
+                self.alistone.append(self.regex_body.findall(line)[0])
             if not re.search(self.regex_body_number,line):
                 continue
+            # print self.regex_body_number.findall(line)[0]
             self.alistone.append(self.regex_body_number.findall(line)[0])
             self.alist.append(self.alistone)
             self.alistone=[]
-'''
+        f.close()
+        return self.alist
+
+    def writeRules(self,*argv):
+        fwrite_chinese=open(self.wtchinese_rules,'a+')
+        for line in argv:
+            fwrite_chinese.write(line[0]+"\t"+line[1]+"\t"+line[2]+"\n")
+        fwrite_chinese.close()
+
+    def menuReadRules(self):
+        self.subjectList=self.readSubject()
+        for subject_one in self.subjectList:
+            self.writeRules(subject_one)
+        self.bodyList=self.readBody()
+        for body_one in self.bodyList:
+            self.writeRules(body_one)
+
+class createRules:
+    def __init__(self):
+        self.filename="jl_wtchinese_rules.txt"
+        self.subjectList=[]
+        self.bodyList=[]
+
+    def readTq(self):
+        f=open(self.filename,'r')
+        flines=f.readlines()
+        for line in flines:
+            if line.split('\t')[0]=='subject':
+                self.subjectList.append(line)
+            elif line.split('\t')[0]=='body':
+                self.bodyList.append(line)
+
+    def writeSubject(self):
+        i=1
+        for subject_one in self.subjectList:
+            subjectName=subject_one.split('\t')[1]
+            subjectNumber=subject_one.split('\t')[2]
+            print 'header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subjectName+'/'
+            print 'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subjectName+'"'
+            print 'score CN_SUBJECT_'+str(i)+'\t'+subjectNumber
+            i+=1
+
+    def writeBody(self):
+        i=1
+        # print self.bodyList
+        for body_one in self.bodyList:
+            # print body_one
+            bodyName=body_one.split('\t')[1]
+            bodyNumber=body_one.split('\t')[2]
+            print 'body CN_BODY_'+str(i)+'\t'+'/'+bodyName+'/'
+            print 'describe CN_BODY_'+str(i)+'\tBody contains "'+bodyName+'"'
+            print 'score CN_BODY_'+str(i)+'\t'+bodyNumber
+            i+=1
 
 
 if __name__=="__main__":
-    tq=tiquchinese()
-    tq.readSubject()
-
-
-
-# f=open('Chinese_rules.cf','r')
-# regex_subject=re.compile(r'header CN_SUBJECT_.{1,8}Subject =~ /(.{1,50})/')
-# regex_body=re.compile(r'body CN_BODY_.{1,8}/(.{1,60})/')
-# regex_number=re.compile(r'score CN_SUBJECT_.{1,8}	(.{1,5})')
-# regex_body_number=re.compile(r'score CN_BODY_.{1,8}	(.{1,5})')
-# flines=f.readlines()
-# alist=[]
-# alistone=[]
-'''
-for line in flines:
-    if re.search(r'header CN_SUBJECT_',line):
-        alistone.append("subject")
-        alistone.append(regex_subject.findall(line)[0])
-        # print "subject\t"+regex_subject.findall(line)[0]
-        # continue
-    if not re.search(r'score CN_SUBJECT_',line):
-        continue
-    alistone.append(regex_number.findall(line)[0])
-        # print regex_number.findall(line)[0]
-    alist.append(alistone)
-    alistone=[]
-
-
-for line in flines:
-    if re.search(r'body CN_BODY_',line):
-        alistone.append("body")
-        alistone.append(regex_body.findall(line)[0])
-    if not re.search(r'score CN_BODY_',line):
-        continue
-    alistone.append(regex_body_number.findall(line)[0])
-    alist.append(alistone)
-    alistone=[]
-f.close()
-
-
-fwrite_chinese=open('bt.txt','wb')
-for i in alist:
-    fwrite_chinese.write(i[0]+"\t"+i[1]+"\t"+i[2]+"\n")
-fwrite_chinese.close()
-
-'''
-
-
-
-
+    cr=createRules()
+    cr.readTq()
+    cr.writeBody()
+    # cr.test()
+    # tq=tiquchinese()
+    # tq.menuReadRules()
 
