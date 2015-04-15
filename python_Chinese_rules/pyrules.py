@@ -17,43 +17,52 @@ class tiquchinese:
         self.wtchinese_rules="jl_wtchinese_rules.txt"
 
     def readSubject(self):
-        f=open(self.chinese_rules_file,'r')
-        flines=f.readlines()
-        for line in flines:
-            if re.search(self.search_header,line):
-                self.alistone.append("subject")
-                self.alistone.append(self.regex_subject.findall(line)[0])
-            if not re.search(self.regex_subnumber,line):
-                continue
-            self.alistone.append(self.regex_subnumber.findall(line)[0])
-            self.alist.append(self.alistone)
-            self.alistone=[]
-        f.close()
-        return self.alist
+        try:
+            f=open(self.chinese_rules_file,'r')
+            flines=f.readlines()
+            for line in flines:
+                if re.search(self.search_header,line):
+                    self.alistone.append("subject")
+                    self.alistone.append(self.regex_subject.findall(line)[0])
+                if not re.search(self.regex_subnumber,line):
+                    continue
+                self.alistone.append(self.regex_subnumber.findall(line)[0])
+                self.alist.append(self.alistone)
+                self.alistone=[]
+            f.close()
+            return self.alist
+        except Exception,e:
+            print e
 
     def readBody(self):
-        f=open(self.chinese_rules_file,'r')
-        flines=f.readlines()
-        for line in flines:
-            if re.search(self.search_body,line):
-                # print 'body'
-                self.alistone.append("body")
-                # print self.regex_body.findall(line)[0]
-                self.alistone.append(self.regex_body.findall(line)[0])
-            if not re.search(self.regex_body_number,line):
-                continue
-            # print self.regex_body_number.findall(line)[0]
-            self.alistone.append(self.regex_body_number.findall(line)[0])
-            self.alist.append(self.alistone)
-            self.alistone=[]
-        f.close()
-        return self.alist
+        try:
+            f=open(self.chinese_rules_file,'r')
+            flines=f.readlines()
+            for line in flines:
+                if re.search(self.search_body,line):
+                    # print 'body'
+                    self.alistone.append("body")
+                    # print self.regex_body.findall(line)[0]
+                    self.alistone.append(self.regex_body.findall(line)[0])
+                if not re.search(self.regex_body_number,line):
+                    continue
+                # print self.regex_body_number.findall(line)[0]
+                self.alistone.append(self.regex_body_number.findall(line)[0])
+                self.alist.append(self.alistone)
+                self.alistone=[]
+            f.close()
+            return self.alist
+        except Exception,e:
+            print e
 
     def writeRules(self,*argv):
-        fwrite_chinese=open(self.wtchinese_rules,'a+')
-        for line in argv:
-            fwrite_chinese.write(line[0]+"\t"+line[1]+"\t"+line[2]+"\n")
-        fwrite_chinese.close()
+        try:
+            fwrite_chinese=open(self.wtchinese_rules,'a+')
+            for line in argv:
+                fwrite_chinese.write(line[0]+"\t"+line[1]+"\t"+line[2]+"\n")
+            fwrite_chinese.close()
+        except Exception,e:
+            print e
 
     def menuReadRules(self):
         self.subjectList=self.readSubject()
@@ -62,7 +71,9 @@ class tiquchinese:
         self.bodyList=self.readBody()
         for body_one in self.bodyList:
             self.writeRules(body_one)
+        print 'success'
 
+#根据jl_wtchinese_rules 生成chinese_rules.cf文件.
 class createRules:
     def __init__(self):
         self.filename="jl_wtchinese_rules.txt"
@@ -101,23 +112,30 @@ class createRules:
             # print 'describe CN_BODY_'+str(i)+'\tBody contains "'+bodyName+'"'
             # print 'score CN_BODY_'+str(i)+'\t'+bodyNumber
             i+=1
+
     def writeFile(self,argv):
-        print argv
-        create_Rules=open(self.create_Rules,'a+')
-        # for line in argv:
-        create_Rules.write(argv)
-        #     create_Rules.write(argv[0])
-        create_Rules.close()
+        try:
+            create_Rules=open(self.create_Rules,'a+')
+            create_Rules.write(argv)
+            create_Rules.close()
+        except Exception,e:
+            print e
 
+    def menuCreateRules(self):
+        self.readTq()
+        self.writeSubject()
+        self.writeBody()
 
-
+    def writeRules(self,*argv):
+        try:
+            create_Rules=open(self.filename,'a+')
+            create_Rules.write(argv)
+            create_Rules.close()
+        except Exception,e:
+            print e
 
 if __name__=="__main__":
     cr=createRules()
-    cr.readTq()
-    cr.writeSubject()
-    cr.writeBody()
-    # cr.test()
-    # tq=tiquchinese()
-    # tq.menuReadRules()
+    cr.menuCreateRules()
+
 
