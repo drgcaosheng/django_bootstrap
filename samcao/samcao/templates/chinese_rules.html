@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block menu_list %}
+    <form class="form-inline" action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>类型:</label>
+          <select class="form-control">
+            <option>Body</option>
+            <option>Subject</option>
+          </select>
+      </div>
+      <div class="form-group">
+        <label>关键词:</label>
+        <input type="text" class="form-control" name="exampleInputkeyword" id="exampleInputkeyword" placeholder="关键词">
+      </div>
+      <div class="form-group">
+        <label>分值:</label>
+        <input type="text" class="form-control" name="exampleInputNumber" id="exampleInputNumber" placeholder="分值">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    {% if errormessage %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for err_msg in errormessage %}
+                    <strong>Warning!</strong> {{ err_msg }}.<br/>
+                {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Chinese_Rules.cf</div>
+
+  <!-- Table -->
+  <table class="table table-hover" >
+    <!--<caption>百度用户经验列表</caption>-->
+    <thead>
+       <tr>
+          <th>序列</th>
+          <th>类型</th>
+          <th>关键词</th>
+          <th>分值</th>
+       </tr>
+    </thead>
+    <tbody>
+       {% for ru in rulist %}
+       <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ ru.0 }}</td>
+          <td>{{ ru.1 }}</td>
+          <td>{{ ru.2 }}</td>
+       </tr>
+       {% empty %}
+        <p>There are no athletes. Only computer programmers.</p>
+       {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -76,10 +76,10 @@ class tiquchinese:
 #根据jl_wtchinese_rules 生成chinese_rules.cf文件.
 class createRules:
     def __init__(self):
-        self.filename="jl_wtchinese_rules.txt"
+        self.filename="rules/jl_wtchinese_rules.txt"
         self.subjectList=[]
         self.bodyList=[]
-        self.create_Rules="chinese_rules.cf"
+        self.create_Rules="rules/chinese_rules.cf"
 
 #读取jl_wtchinese_rules.txt文件.根据每行的第一个单词,判断是body还是subject.生成bodylist与subjectlist
     def readTq(self):
@@ -161,20 +161,23 @@ class createRules:
                 print subject_jl
 
     def returnRulesList(self):
-        ruleslist=[]
-        f=open(self.filename,'r')
-        flines=f.readlines()
-        for line in flines:
-            ru_e=line.split('\t')
-            if ru_e[0]=='subject' or ru_e[0]=='body':
-                ruleslist.append(ru_e)
-        return ruleslist
+        try:
+            ruleslist=[]
+            f=open(self.filename,'r')
+            flines=f.readlines()
+            for line in flines:
+                ru_e=line.split('\t')
+                if ru_e[0]=='subject' or ru_e[0]=='body':
+                    ruleslist.append(ru_e)
+            return ruleslist
+        except Exception,e:
+            return e
 
 
 
 if __name__=="__main__":
     cr=createRules()
     # cr.readUserPrint()
-    print cr.returnRulesList()
+    # print cr.returnRulesList()
     # cr.readUserPrint()
 

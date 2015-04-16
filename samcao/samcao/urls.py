@@ -28,6 +28,8 @@ urlpatterns += patterns('samcao.problem.views',
     url(r'^search/$','search'),
     url(r'^qy_email/$','qy_email'),
     url(r'^qy_emailtest/$','qy_emailtest'),
+    url(r'^chinese_rules/$','chinese_rules'),
+
 )
 
 

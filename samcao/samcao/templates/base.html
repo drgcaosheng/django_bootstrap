@@ -23,13 +23,9 @@
        <div>
           <ul class="nav navbar-nav">
              <li class="active"><a href="/">首页</a></li>
-             <!--<li><a href="/add_way/">添加问题</a></li>-->
-              <!--<li><a href="/system_gl/">系统类型管理</a></li>-->
-              <!--<li><a href="#">用户管理</a></li>-->
-              <!--<li><a href="#">问题类型管理</a></li>-->
-              <!--<li><a href="#">问题列表</a></li>-->
               <li><a href="/jy_list/">获取百度经验列表</a></li>
               <li><a href="/qy_email/">迁移用户邮件</a></li>
+              <li><a href="/chinese_rules/">Rules管理</a></li>
           </ul>
        </div>
         <!--导航层搜索框-->
@@ -45,51 +41,8 @@
 
     <!--左侧导航-->
     <div>
-        <!--<div style="width: 20%;float: right;margin-right: 100px;">-->
-            <!--<a class="list-group-item active">-->
-                <!--问题类型-->
-            <!--</a>-->
-                <!--{% block way_system %}-->
-                    <!--{% for type in typeList %}-->
-                        <!--<a href="#" class="list-group-item">{{ type.way_type }}</a>-->
-                    <!--{% endfor %}-->
-                <!--{% endblock %}-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Linux系统管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Linux超域管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Linux域管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Linux底层</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Windows系统管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Windows超域管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Windows域管理后台</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">Windows底层</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" class="list-group-item">其它</a>&ndash;&gt;-->
-
-        <!--</div>-->
-
         <div class="panel panel-default" style="float:left;width: 90%;margin-left: 40px;">
             {% block menu_list %}{% endblock %}
-            <!--<div class="panel-heading">-->
-                <!--<h3 class="panel-title">-->
-                    <!--无法收取邮件-->
-                <!--</h3>-->
-            <!--</div>-->
-            <!--<div class="panel-body">-->
-                <!--邮件服务没有启动-->
-            <!--</div>-->
-            <!--<div class="panel-heading">-->
-                <!--<h3 class="panel-title">-->
-                    <!--umail_nginx 禁止IP打开webmail-->
-                <!--</h3>-->
-            <!--</div>-->
-            <!--<div class="panel-body">-->
-                <!--test-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div style="width: 65%;float: left;margin-left:40px;">-->
-            <!--<a class="list-group-item active">-->
-                <!--问题描述-->
-            <!--</a>-->
-            <!--<a href="#" class="list-group-item">24*7 支持</a>-->
         </div>
     </div>
     <br/>

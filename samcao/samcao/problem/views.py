@@ -7,6 +7,7 @@ from samcao.problem.forms import OldEmailBox
 from django.template import RequestContext
 #testmailbox
 import testemail
+import pyrules
 
 import tqjinyanends
 import cookielib
@@ -109,7 +110,6 @@ def qy_email(request):
                     qy_email=testemail.qiyiold(oldmailServer,oldemailAddress,oldpassWord,oldssl,newmailServer,newemailAddress,newpassWord,newssl)
                     qy_email=str(qy_email).upper()
                     return render_to_response('qdqyemail.html',{'qy_email':qy_email,'oldemailAddress':oldemailAddress,'newemailAddress':newemailAddress})
-
             else:
                 newerrors.append(csnewEmail)
                 olderrors.append(csoldEmail)
@@ -133,7 +133,39 @@ def qy_emailtest(request):
     message = request.REQUEST.get('inputMailServer3','')
     return HttpResponse(message)
 
+def chinese_rules(request):
+    cr=pyrules.createRules()
+    rulist=cr.returnRulesList()
 
+    olderrors=[]
+    newerrors=[]
+    oldmessage=[]
+    newmessage=[]
+    allmessage=''
+    # if request.method=='GET':
+    #     if not request.REQUEST.get('exampleInputkeyword',''):
+    #         olderrors.append('Enter a Mail Server!')
+    #
+    errormessage=[]
+    # error=False
+    # olderrors=[]
+    # newerrors=[]
+    # oldmessage=[]
+    # newmessage=[]
+    # allmessage=''
+    if request.method=='POST':
+        if not request.REQUEST.get('exampleInputkeyword',''):
+            errormessage.append('Enter a Mail Server!')
+
+        # print 'test_ok'
+        # if not request.REQUEST.get('exampleInputkeyword',''):
+        #     errormessage.append("Please input KeyWord!!")
+        # if not request.REQUEST.get('exampleInputNumber',''):
+        #     errormessage.append('Please input number!!!')
+    return render_to_response('chinese_rules.html',{
+        'rulist':rulist,
+        'errormessage':errormessage
+    },context_instance=RequestContext(request))
 
 
 
