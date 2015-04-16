@@ -4,18 +4,18 @@
       {% csrf_token %}
       <div class="form-group">
         <label>类型:</label>
-          <select class="form-control">
+          <select class="form-control" name="rulesType">
             <option>Body</option>
             <option>Subject</option>
           </select>
       </div>
       <div class="form-group">
         <label>关键词:</label>
-        <input type="text" class="form-control" name="exampleInputkeyword" id="exampleInputkeyword" placeholder="关键词">
+        <input type="text" class="form-control" name="exampleInputkeyword" id="exampleInputkeyword" placeholder="关键词" value="{{ exampleInputkeyword }}">
       </div>
       <div class="form-group">
         <label>分值:</label>
-        <input type="text" class="form-control" name="exampleInputNumber" id="exampleInputNumber" placeholder="分值">
+        <input type="text" class="form-control" name="exampleInputNumber" id="exampleInputNumber" placeholder="分值" value="{{ exampleInputNumber }}">
       </div>
       <button type="submit" class="btn btn-default">Search</button>
     </form>
@@ -29,7 +29,7 @@
     {% endif %}
 
 
-    <div class="panel panel-default">
+  <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Chinese_Rules.cf</div>
 
@@ -45,6 +45,23 @@
        </tr>
     </thead>
     <tbody>
+    {% if searchlist %}
+        {% for search in searchlist %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ search.0 }}</td>
+            <td>{{ search.1 }}</td>
+            <td>{{ search.2 }}</td>
+            <td>{{ search.3 }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        {% if sear_yes %}
+            <div class="alert alert-success" role="alert">
+                添加关键词"{{ exampleInputkeyword }}"成功!!!
+                <a href="#" class="alert-link">点击下载最新Chinese_rules.cf</a>
+            </div>
+        {% endif %}
        {% for ru in rulist %}
        <tr>
           <td>{{ forloop.counter }}</td>
@@ -55,6 +72,7 @@
        {% empty %}
         <p>There are no athletes. Only computer programmers.</p>
        {% endfor %}
+    {% endif %}
     </tbody>
   </table>
 </div>

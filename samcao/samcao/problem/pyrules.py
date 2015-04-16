@@ -173,7 +173,29 @@ class createRules:
         except Exception,e:
             return e
 
+    def searchRules(self,rulestype,keyword,number):
+        print rulestype.lower(),keyword,number
+        f=open(self.filename,'r')
+        flines=f.readlines()
+        searchList=[]
+        for line in flines:
+            if line.split('\t')[0]==rulestype.encode('utf-8').lower():
+                if keyword.encode('utf-8') in line.split('\t')[1].lower():
+                    searchList.append(line.split('\t'))
+        # print searchList
+        if not searchList:
+            self.addRules(rulestype,keyword,number)
+        return searchList
 
+    def addRules(self,rulestype,keyword,number):
+        try:
+            write_file="\r\n"+rulestype.encode('utf-8').lower()+"\t"+keyword.encode('utf-8')+"\t"+number.encode('utf-8')
+            print write_file
+            create_Rules=open(self.filename,'a+')
+            create_Rules.write(write_file)
+            create_Rules.close()
+        except Exception,e:
+            print e
 
 if __name__=="__main__":
     cr=createRules()

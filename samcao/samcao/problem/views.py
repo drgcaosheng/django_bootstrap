@@ -136,35 +136,30 @@ def qy_emailtest(request):
 def chinese_rules(request):
     cr=pyrules.createRules()
     rulist=cr.returnRulesList()
-
-    olderrors=[]
-    newerrors=[]
-    oldmessage=[]
-    newmessage=[]
-    allmessage=''
-    # if request.method=='GET':
-    #     if not request.REQUEST.get('exampleInputkeyword',''):
-    #         olderrors.append('Enter a Mail Server!')
-    #
     errormessage=[]
-    # error=False
-    # olderrors=[]
-    # newerrors=[]
-    # oldmessage=[]
-    # newmessage=[]
-    # allmessage=''
+    searchList=[]
+    sear_yes=[]
+    selectType=request.REQUEST.get('rulesType','').lower()
+    print selectType
     if request.method=='POST':
         if not request.REQUEST.get('exampleInputkeyword',''):
-            errormessage.append('Enter a Mail Server!')
+            errormessage.append('Please Input Key Word!!!')
+        if not request.REQUEST.get('exampleInputNumber',''):
+            errormessage.append('Please Input Key Number!!!')
+        if not errormessage:
+            searchList=cr.searchRules(request.REQUEST.get('rulesType',''),request.REQUEST.get('exampleInputkeyword',''),request.REQUEST.get('exampleInputNumber',''))
+            if not searchList:
+                sear_yes.append('yes')
 
-        # print 'test_ok'
-        # if not request.REQUEST.get('exampleInputkeyword',''):
-        #     errormessage.append("Please input KeyWord!!")
-        # if not request.REQUEST.get('exampleInputNumber',''):
-        #     errormessage.append('Please input number!!!')
+    # print request.REQUEST.get('rulesType','')
     return render_to_response('chinese_rules.html',{
         'rulist':rulist,
-        'errormessage':errormessage
+        'errormessage':errormessage,
+        'exampleInputkeyword':request.REQUEST.get('exampleInputkeyword',''),
+        'exampleInputNumber':request.REQUEST.get('exampleInputNumber',''),
+        'searchlist':searchList,
+        'selectType':selectType,
+        'sear_yes':sear_yes
     },context_instance=RequestContext(request))
 
 
