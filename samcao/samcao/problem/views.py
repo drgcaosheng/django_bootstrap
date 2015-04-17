@@ -159,7 +159,8 @@ def chinese_rules(request):
         'exampleInputNumber':request.REQUEST.get('exampleInputNumber',''),
         'searchlist':searchList,
         'selectType':selectType,
-        'sear_yes':sear_yes
+        'sear_yes':sear_yes,
+        'ip_address':request.META['REMOTE_ADDR']
     },context_instance=RequestContext(request))
 
 

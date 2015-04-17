@@ -80,18 +80,9 @@ class createRules:
         self.subjectList=[]
         self.bodyList=[]
         self.create_Rules="chinese_rules.cf"
-
-#读取jl_wtchinese_rules.txt文件.根据每行的第一个单词,判断是body还是subject.生成bodylist与subjectlist
-    def readTq(self):
-        f=open(self.filename,'r')
-        flines=f.readlines()
-        for line in flines:
-            if line.split('\t')[0]=='subject':
-                self.subjectList.append(line)
-            elif line.split('\t')[0]=='body':
-                self.bodyList.append(line)
-        # print self.subjectList
-        # print self.bodyList
+        self.rulease_list=[]
+        self.bodyDict={}
+        self.subjectDict={}
 
 #根据readTq读取的subjectlist将其写入到chinese_rules.cf文件中.
     def writeSubject(self):
@@ -133,7 +124,6 @@ class createRules:
         self.readTq()
         self.writeSubject()
         self.writeBody()
-
     def readUserPrint(self):
         userPrint_Type = raw_input("请输入需要添加的类型<Body/Subject>: ")
         userPrint_Word=raw_input("请输入需要添加的关键词: ")
@@ -159,22 +149,67 @@ class createRules:
                 print 'OK'
             else:
                 print subject_jl
-
     def returnRulesList(self):
-        ruleslist=[]
+        try:
+            ruleslist=[]
+            f=open(self.filename,'r')
+            flines=f.readlines()
+            for line in flines:
+                ru_e=line.split('\t')
+                if ru_e[0]=='subject' or ru_e[0]=='body':
+                    ruleslist.append(ru_e)
+            return ruleslist
+        except Exception,e:
+            return e
+
+    def searchRules(self,*argv):
+        # print argv
+        canSu=self.zhFunction(argv[0],argv[1],argv[2])
+        # print canSu
+        # rulesType=rulesType.encode('utf-8').lower()
+        # keyWord=keyWord.encode('utf-8').lower()
+        # rulesNumber=rulesNumber.encode('utf-8').lower()
+        try:
+            if canSu[0]=='body':
+                return self.bodyDict[canSu[1]]
+            elif canSu[0]=='subject':
+                return self.subjectDict[canSu[1]]
+        except KeyError:
+            return False
+        except Exception,e:
+            return e
+
+    def zhFunction(self,*argv):
+        # print argv
+        rulesType=argv[0].encode('utf-8').lower()
+        keyWord=argv[1].encode('utf-8').lower()
+        rulesNumber=argv[2].encode('utf-8').lower()
+        # print '整理参数'
+        return rulesType,keyWord,rulesNumber
+
+    def addRules(self,*argv):
+        canSu=self.zhFunction(argv[0],argv[1],argv[2])
+        # print '===='
+        # print canSu
+        # print '========'
+
+    #读取jl_wtchinese_rules.txt文件.返回一个列表
+    def readTq(self):
         f=open(self.filename,'r')
         flines=f.readlines()
         for line in flines:
-            ru_e=line.split('\t')
-            if ru_e[0]=='subject' or ru_e[0]=='body':
-                ruleslist.append(ru_e)
-        return ruleslist
-
-
-
+            self.rulease_list.append(line.split('\t'))
+        return self.rulease_list
+    def rulesDict(self):
+        for rulease_one in self.rulease_list:
+            if rulease_one[0].lower()=='subject':
+                self.subjectDict[rulease_one[1]]=rulease_one
+            elif rulease_one[0].lower()=='body':
+                self.bodyDict[rulease_one[1]]=rulease_one
 if __name__=="__main__":
     cr=createRules()
-    # cr.readUserPrint()
-    print cr.returnRulesList()
-    # cr.readUserPrint()
+    cr.readTq()
+    cr.rulesDict()
+    # print cr.searchRules(u'body',u'有限公司',u'2')
+    # print cr.addRules(u'body',u'有限公司',u'2')
 
