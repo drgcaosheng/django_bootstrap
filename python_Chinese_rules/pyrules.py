@@ -206,10 +206,23 @@ class createRules:
                 self.subjectDict[rulease_one[1]]=rulease_one
             elif rulease_one[0].lower()=='body':
                 self.bodyDict[rulease_one[1]]=rulease_one
+
+
+class createRules2:
+    def __init__(self):
+        self.filename="jl_wtchinese_rules.txt"
+    def inputRules(self):
+        typeRules=raw_input("Please input Type <body/subject> :")
+        keyWordRules=raw_input("Please input keyWord: ")
+        numberRules=raw_input("Please input number: ")
+        if typeRules.lower()!="body" or typeRules.lower()!="subject":
+            print 'error_type'
+        print typeRules,keyWordRules,numberRules
+
+
 if __name__=="__main__":
-    cr=createRules()
-    cr.readTq()
-    cr.rulesDict()
+    cr=createRules2()
+    cr.inputRules()
     # print cr.searchRules(u'body',u'有限公司',u'2')
     # print cr.addRules(u'body',u'有限公司',u'2')
 
