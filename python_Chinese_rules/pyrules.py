@@ -311,7 +311,7 @@ class createRules2:
             self.bodyrules+=subjectone
         for bodyone in self.bodylist:
             self.bodyrules+=bodyone
-        self.writeFile(self.bodyrules)
+        return self.bodyrules
 
     #写入文件
     def writeFile(self,argv):
@@ -322,16 +322,17 @@ class createRules2:
         except Exception,e:
             print e
 
+
 if __name__=="__main__":
     cr=createRules2()
-    cr.readTq()
-    cr.rulesDict()
+    print cr.readTq()
+    # cr.rulesDict()
     # print cr.searchRules('subject','优惠','1.2')
     # print cr.addRules('subject','优惠优惠优惠优惠','1.2222')
     # cr.updateRules('subject','优惠','333')
     # cr.delRules('subject','优惠','333')
     # print cr.subjectDict
-    cr.readDict()
+    # print cr.readDict()
     # cr.inputRules()
     # print cr.searchRules(u'body',u'有限公司',u'2')
     # print cr.addRules(u'body',u'有限公司',u'2')

@@ -134,22 +134,25 @@ def qy_emailtest(request):
     return HttpResponse(message)
 
 def chinese_rules(request):
-    cr=pyrules.createRules()
-    rulist=cr.returnRulesList()
+    cr=pyrules.createRules2()
+    rulist=cr.readTq()
     errormessage=[]
     searchList=[]
     sear_yes=[]
     selectType=request.REQUEST.get('rulesType','').lower()
-    print selectType
+    actionType=request.REQUEST.get('actionType','').lower()
+    # print actionType
+    # print selectType
     if request.method=='POST':
         if not request.REQUEST.get('exampleInputkeyword',''):
             errormessage.append('Please Input Key Word!!!')
         if not request.REQUEST.get('exampleInputNumber',''):
             errormessage.append('Please Input Key Number!!!')
         if not errormessage:
-            searchList=cr.searchRules(request.REQUEST.get('rulesType',''),request.REQUEST.get('exampleInputkeyword',''),request.REQUEST.get('exampleInputNumber',''))
-            if not searchList:
-                sear_yes.append('yes')
+            print 'OK'
+            #searchList=cr.searchRules(request.REQUEST.get('rulesType',''),request.REQUEST.get('exampleInputkeyword',''),request.REQUEST.get('exampleInputNumber',''))
+            # if not searchList:
+            #     sear_yes.append('yes')
 
     # print request.REQUEST.get('rulesType','')
     return render_to_response('chinese_rules.html',{

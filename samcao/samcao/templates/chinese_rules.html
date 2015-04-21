@@ -8,6 +8,15 @@
     <form class="form-inline" action="" method="post">
       {% csrf_token %}
       <div class="form-group">
+        <label>动作:</label>
+          <select class="form-control" name="actionType">
+              <option value="search" >查询</option>
+              <option value="delete" >删除</option>
+              <option value="update" >更改</option>
+              <option value="add" >增加</option>
+          </select>
+      </div>
+      <div class="form-group">
         <label>类型:</label>
           <select class="form-control" name="rulesType">
             <option>Body</option>
