@@ -217,6 +217,15 @@ class createRules2:
         self.subjectlist=[]
         self.bodylist=[]
 
+    def zhFunction(self,*argv):
+        # print argv
+        actionType=argv[0].encode('utf-8').lower()
+        rulesType=argv[1].encode('utf-8').lower()
+        keyWord=argv[2].encode('utf-8').lower()
+        rulesNumber=argv[3].encode('utf-8').lower()
+        # print '整理参数'
+        return actionType,rulesType,keyWord,rulesNumber
+
     #获取传递过来的参数,或者也叫整理参数
     def inputRules(self):
         typeRules=raw_input("Please input Type <body/subject> :")
@@ -233,6 +242,7 @@ class createRules2:
         flines=f.readlines()
         for line in flines:
             self.rulease_list.append(line.split('\t'))
+        # print self.rulease_list
         return self.rulease_list
 
     #整理文件列表,返回两个字典
@@ -244,16 +254,28 @@ class createRules2:
             elif rulease_one[0].lower()=='body':
                 self.bodyDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
     #查询
-    def searchRules(self,typeRules,keyWord,numberRules):
+    def searchRules(self,*argv):
         try:
-            self.rulesKey=typeRules+'_'+keyWord
-            if typeRules.lower()=='body':
+            # canSu=self.zhFunction(actionType,typeRules,keyWord,numberRules)
+            self.rulesKey=argv[1]+'_'+argv[2]
+            # print self.rulesKey
+            # print self.bodyDict
+            if argv[1]=='body':
+                print 'search_2_body'
+                # print self.bodyDict[self.rulesKey]
+                print self.bodyDict
+                print self.bodyDict[self.rulesKey]
                 return self.bodyDict[self.rulesKey]
-            elif typeRules.lower()=='subject':
+            elif argv[1]=='subject':
+                print 'search_2_subject'
+                # print self.subjectDict[self.rulesKey]
                 return self.subjectDict[self.rulesKey]
         except KeyError:
+            print 'key error'
+            # print canSu[1]
             return False
         except Exception,e:
+            print e
             return e
 
     #添加
@@ -322,7 +344,15 @@ class createRules2:
         except Exception,e:
             print e
 
-    # def returnAllRules(self):
+    def menu(self,*argv):
+        # self.readTq()
+        self.rulesDict()
+        # cr.rulesDict()
+        canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
+        # print canSu
+        if canSu[0]=='search':
+            print 'search_1'
+            self.searchRules(canSu[0],canSu[1],canSu[2],canSu[3])
 
 
 if __name__=="__main__":

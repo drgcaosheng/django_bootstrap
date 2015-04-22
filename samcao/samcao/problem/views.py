@@ -139,8 +139,11 @@ def chinese_rules(request):
     errormessage=[]
     searchList=[]
     sear_yes=[]
+    returnlist=[]
     selectType=request.REQUEST.get('rulesType','').lower()
     actionType=request.REQUEST.get('actionType','').lower()
+    keyWord=request.REQUEST.get('exampleInputkeyword','')
+    numberW=request.REQUEST.get('exampleInputNumber','')
     # print actionType
     # print selectType
     if request.method=='POST':
@@ -149,13 +152,16 @@ def chinese_rules(request):
         if not request.REQUEST.get('exampleInputNumber',''):
             errormessage.append('Please Input Key Number!!!')
         if not errormessage:
-            print 'OK'
+            # print 'OK'
+            returnlist=cr.menu(actionType,selectType,keyWord,numberW)
+            print returnlist
             #searchList=cr.searchRules(request.REQUEST.get('rulesType',''),request.REQUEST.get('exampleInputkeyword',''),request.REQUEST.get('exampleInputNumber',''))
             # if not searchList:
             #     sear_yes.append('yes')
 
     # print request.REQUEST.get('rulesType','')
     return render_to_response('chinese_rules.html',{
+        'returnlist':returnlist,
         'rulist':rulist,
         'errormessage':errormessage,
         'exampleInputkeyword':request.REQUEST.get('exampleInputkeyword',''),
