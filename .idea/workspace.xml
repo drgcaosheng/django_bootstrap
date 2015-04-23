@@ -13,7 +13,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/django_bootstrap$pyrules.coverage" NAME="pyrules Coverage Results" MODIFIED="1429697781426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_Chinese_rules" />
+    <SUITE FILE_PATH="coverage/django_bootstrap$pyrules.coverage" NAME="pyrules Coverage Results" MODIFIED="1429774067988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_Chinese_rules" />
     <SUITE FILE_PATH="coverage/django_bootstrap$testsogou.coverage" NAME="testsogou Coverage Results" MODIFIED="1429243510094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_Chinese_rules" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -27,69 +27,113 @@
     <favorites_list name="django_bootstrap" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pyrules.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/python_Chinese_rules/pyrules.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3910" max-vertical-offset="7163">
-              <caret line="225" column="22" selection-start-line="225" selection-start-column="22" selection-end-line="225" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2641" max-vertical-offset="3743">
-              <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chinese_rules.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4528303" vertical-offset="76" max-vertical-offset="1919">
-              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pyrules.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/pyrules.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75" vertical-offset="2004" max-vertical-offset="3363">
-              <caret line="278" column="20" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="20" />
-              <folding>
-                <element signature="e#140#684#0" expanded="false" />
-                <element signature="e#721#1371#0" expanded="false" />
-                <element signature="e#1405#2211#0" expanded="false" />
-                <element signature="e#2545#2805#0" expanded="false" />
-                <element signature="e#2902#3120#0" expanded="false" />
-                <element signature="e#3207#3667#0" expanded="false" />
-                <element signature="e#3701#4369#0" expanded="false" />
-                <element signature="e#4408#4597#0" expanded="false" />
-                <element signature="e#4637#4703#0" expanded="false" />
-                <element signature="e#4741#5715#0" expanded="false" />
-                <element signature="e#5755#6104#0" expanded="false" />
-                <element signature="e#6720#6950#0" expanded="false" />
-                <element signature="e#6990#7108#0" expanded="false" />
-                <element signature="e#7179#7349#0" expanded="false" />
-                <element signature="e#7383#7638#0" expanded="false" />
-                <element signature="e#10183#10715#0" expanded="false" />
-                <element signature="e#10790#11372#0" expanded="false" />
-                <element signature="e#11438#11785#0" expanded="false" />
-                <element signature="e#11825#12237#0" expanded="false" />
-                <element signature="e#12287#12458#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.7505219">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-16.72" vertical-offset="684" max-vertical-offset="1748">
+                  <caret line="158" column="31" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#457#592#0" expanded="false" />
+                    <element signature="e#620#850#0" expanded="false" />
+                    <element signature="e#878#1523#0" expanded="false" />
+                    <element signature="e#1553#1646#0" expanded="false" />
+                    <element signature="e#1674#1765#0" expanded="false" />
+                    <element signature="e#1793#1916#0" expanded="false" />
+                    <element signature="e#1945#5428#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="chinese_rules.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.36666667" vertical-offset="247" max-vertical-offset="817">
+                  <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+                  <folding>
+                    <element signature="tag#form#0" expanded="false" />
+                    <element signature="tag#div#0;tag#form#0" expanded="false" />
+                    <element signature="tag#select#0;tag#div#0;tag#form#0" expanded="false" />
+                    <element signature="tag#div#1;tag#form#0" expanded="false" />
+                    <element signature="tag#select#0;tag#div#1;tag#form#0" expanded="false" />
+                    <element signature="tag#div#2;tag#form#0" expanded="false" />
+                    <element signature="tag#div#3;tag#form#0" expanded="false" />
+                    <element signature="tag#div#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pyrules.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/python_Chinese_rules/pyrules.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="6300" max-vertical-offset="7163">
+                  <caret line="357" column="24" selection-start-line="357" selection-start-column="24" selection-end-line="357" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pyrules.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/pyrules.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
+                  <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="pyrules.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/python_Chinese_rules/pyrules.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.3737705" vertical-offset="0" max-vertical-offset="1463">
+                  <caret line="211" column="23" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#112#2807#0" expanded="false" />
+                    <element signature="e#140#684#0" expanded="false" />
+                    <element signature="e#721#1371#0" expanded="false" />
+                    <element signature="e#1405#2211#0" expanded="false" />
+                    <element signature="e#2253#2506#0" expanded="false" />
+                    <element signature="e#2545#2805#0" expanded="false" />
+                    <element signature="e#2874#7638#0" expanded="false" />
+                    <element signature="e#2902#3120#0" expanded="false" />
+                    <element signature="e#3207#3667#0" expanded="false" />
+                    <element signature="e#3701#4369#0" expanded="false" />
+                    <element signature="e#4408#4597#0" expanded="false" />
+                    <element signature="e#4637#4703#0" expanded="false" />
+                    <element signature="e#4741#5715#0" expanded="false" />
+                    <element signature="e#5755#6104#0" expanded="false" />
+                    <element signature="e#6147#6678#0" expanded="false" />
+                    <element signature="e#6720#6950#0" expanded="false" />
+                    <element signature="e#6990#7108#0" expanded="false" />
+                    <element signature="e#7179#7349#0" expanded="false" />
+                    <element signature="e#7383#7638#0" expanded="false" />
+                    <element signature="e#7908#8200#0" expanded="false" />
+                    <element signature="e#8260#8604#0" expanded="false" />
+                    <element signature="e#8905#9235#0" expanded="false" />
+                    <element signature="e#9280#10111#0" expanded="false" />
+                    <element signature="e#10177#10709#0" expanded="false" />
+                    <element signature="e#10784#11366#0" expanded="false" />
+                    <element signature="e#11432#11779#0" expanded="false" />
+                    <element signature="e#11819#12231#0" expanded="false" />
+                    <element signature="e#12281#12452#0" expanded="false" />
+                    <element signature="e#12488#12764#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -100,10 +144,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/samcao/samcao/settings.py" />
-        <option value="$PROJECT_DIR$/samcao/samcao/problem/views.py" />
-        <option value="$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html" />
         <option value="$PROJECT_DIR$/samcao/samcao/problem/pyrules.py" />
         <option value="$PROJECT_DIR$/python_Chinese_rules/pyrules.py" />
+        <option value="$PROJECT_DIR$/samcao/samcao/problem/views.py" />
+        <option value="$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html" />
       </list>
     </option>
   </component>
@@ -142,7 +186,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,6 +296,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -419,9 +463,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -443,6 +484,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -511,19 +555,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="958" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1296" height="958" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32390952" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22051696" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5285481" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21454546" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2140266" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -532,8 +576,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -890,59 +934,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3734336" vertical-offset="44" max-vertical-offset="3268">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4528303" vertical-offset="76" max-vertical-offset="1919">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2641" max-vertical-offset="3743">
-          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/python_Chinese_rules/pyrules.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3910" max-vertical-offset="7163">
-          <caret line="225" column="22" selection-start-line="225" selection-start-column="22" selection-end-line="225" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6300" max-vertical-offset="7163">
+          <caret line="357" column="24" selection-start-line="357" selection-start-column="24" selection-end-line="357" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/pyrules.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75" vertical-offset="2004" max-vertical-offset="3363">
-          <caret line="278" column="20" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samcao/samcao/problem/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.72" vertical-offset="684" max-vertical-offset="1748">
+          <caret line="158" column="31" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="31" />
           <folding>
-            <element signature="e#140#684#0" expanded="false" />
-            <element signature="e#721#1371#0" expanded="false" />
-            <element signature="e#1405#2211#0" expanded="false" />
-            <element signature="e#2545#2805#0" expanded="false" />
-            <element signature="e#2902#3120#0" expanded="false" />
-            <element signature="e#3207#3667#0" expanded="false" />
-            <element signature="e#3701#4369#0" expanded="false" />
-            <element signature="e#4408#4597#0" expanded="false" />
-            <element signature="e#4637#4703#0" expanded="false" />
-            <element signature="e#4741#5715#0" expanded="false" />
-            <element signature="e#5755#6104#0" expanded="false" />
-            <element signature="e#6720#6950#0" expanded="false" />
-            <element signature="e#6990#7108#0" expanded="false" />
-            <element signature="e#7179#7349#0" expanded="false" />
-            <element signature="e#7383#7638#0" expanded="false" />
-            <element signature="e#10183#10715#0" expanded="false" />
-            <element signature="e#10790#11372#0" expanded="false" />
-            <element signature="e#11438#11785#0" expanded="false" />
-            <element signature="e#11825#12237#0" expanded="false" />
-            <element signature="e#12287#12458#0" expanded="false" />
+            <element signature="e#457#592#0" expanded="false" />
+            <element signature="e#620#850#0" expanded="false" />
+            <element signature="e#878#1523#0" expanded="false" />
+            <element signature="e#1553#1646#0" expanded="false" />
+            <element signature="e#1674#1765#0" expanded="false" />
+            <element signature="e#1793#1916#0" expanded="false" />
+            <element signature="e#1945#5428#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samcao/samcao/templates/chinese_rules.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36666667" vertical-offset="247" max-vertical-offset="817">
+          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+          <folding>
+            <element signature="tag#form#0" expanded="false" />
+            <element signature="tag#div#0;tag#form#0" expanded="false" />
+            <element signature="tag#select#0;tag#div#0;tag#form#0" expanded="false" />
+            <element signature="tag#div#1;tag#form#0" expanded="false" />
+            <element signature="tag#select#0;tag#div#1;tag#form#0" expanded="false" />
+            <element signature="tag#div#2;tag#form#0" expanded="false" />
+            <element signature="tag#div#3;tag#form#0" expanded="false" />
+            <element signature="tag#div#0" expanded="false" />
           </folding>
         </state>
       </provider>

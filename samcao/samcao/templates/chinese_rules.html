@@ -1,26 +1,45 @@
 {% extends "base.html" %}
 {% block menu_list %}
-    <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>你的IP地址是:</strong> {{ ip_address }}.<br/>
-    </div>
-
     <form class="form-inline" action="" method="post">
       {% csrf_token %}
       <div class="form-group">
         <label>动作:</label>
           <select class="form-control" name="actionType">
-              <option value="search" >查询</option>
-              <option value="delete" >删除</option>
-              <option value="update" >更改</option>
-              <option value="add" >增加</option>
+              {% if 'search' in actionType %}
+                    <option value="search" selected="selected">查询</option>
+              {% else %}
+                    <option value="search" >查询</option>
+              {% endif %}
+
+              {% if 'delete' in actionType %}
+                    <option value="delete"  selected="selected">删除</option>
+              {% else %}
+                    <option value="delete" >删除</option>
+              {% endif %}
+
+              {% if 'update' in actionType %}
+                    <option value="update"  selected="selected" >更改</option>
+              {% else %}
+                    <option value="update" >更改</option>
+              {% endif %}
+
+              {% if 'add' in actionType %}
+                    <option value="add" selected="selected" >增加</option>
+              {% else %}
+                    <option value="add" >增加</option>
+              {% endif %}
           </select>
       </div>
       <div class="form-group">
         <label>类型:</label>
           <select class="form-control" name="rulesType">
-              <option>Subject</option>
-              <option>Body</option>
+              {% if 'subject' in selectType %}
+                    <option selected="selected">Subject</option>
+                    <option>Body</option>
+              {% else %}
+                    <option>Subject</option>
+                    <option selected="selected">Body</option>
+              {% endif %}
           </select>
       </div>
       <div class="form-group">
@@ -45,52 +64,31 @@
 
   <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Chinese_Rules.cf</div>
+        <div class="panel-heading">Chinese_Rules.cf</div>
 
   <!-- Table -->
-  <table class="table table-hover" >
-    <!--<caption>百度用户经验列表</caption>-->
-    <thead>
-       <tr>
-          <th>序列</th>
-          <th>类型</th>
-          <th>关键词</th>
-          <th>分值</th>
-       </tr>
-    </thead>
-    <tbody>
-    {% if searchlist %}
-        {% for search in searchlist %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ search.0 }}</td>
-            <td>{{ search.1 }}</td>
-            <td>{{ search.2 }}</td>
-            <td>{{ search.3 }}</td>
-        </tr>
-        {% endfor %}
-    {% else %}
-        {% if sear_yes %}
-            <div class="alert alert-success" role="alert">
-                添加关键词"{{ exampleInputkeyword }}"成功!!!
-                <a href="#" class="alert-link">点击下载最新Chinese_rules.cf</a>
-            </div>
-        {% endif %}
-        {% print rulist %}
-       {% for ru in rulist %}
-
-       <tr>
-          <td>{{ forloop.counter }}</td>
-          <td>{{ ru.0 }}</td>
-          <td>{{ ru.1 }}</td>
-          <td>{{ ru.2 }}</td>
-       </tr>
-       {% empty %}
-        <p>There are no athletes. Only computer programmers.</p>
-       {% endfor %}
-    {% endif %}
-    {% print returnlist %}
-    </tbody>
-  </table>
+      <table class="table table-hover" >
+        <!--<caption>百度用户经验列表</caption>-->
+        <thead>
+           <tr>
+              <th>序列</th>
+              <th>类型</th>
+              <th>关键词</th>
+              <th>分值</th>
+           </tr>
+        </thead>
+            <tbody>
+                {% if returnlist %}
+                    {% for rules_one in returnlist %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ rules_one.0 }}</td>
+                            <td>{{ rules_one.1 }}</td>
+                            <td>{{ rules_one.2 }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+      </table>
 </div>
 {% endblock %}
