@@ -78,6 +78,20 @@
            </tr>
         </thead>
             <tbody>
+            {% if 'search' in actionType and not errormessage %}
+                {% if returnlist %}
+                    <tr>
+                        <td>{{ 1 }}</td>
+                        <td>{{ returnlist.0 }}</td>
+                        <td>{{ returnlist.1 }}</td>
+                        <td>{{ returnlist.2 }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                    </tr>
+                {% endif %}
+            {% else %}
                 {% if returnlist %}
                     {% for rules_one in returnlist %}
                         <tr>
@@ -88,6 +102,7 @@
                         </tr>
                     {% endfor %}
                 {% endif %}
+            {% endif %}
             </tbody>
       </table>
 </div>

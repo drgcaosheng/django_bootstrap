@@ -148,7 +148,13 @@ def chinese_rules(request):
         if not request.REQUEST.get('exampleInputNumber',''):
             errormessage.append('Please Input Key Number!!!')
         if not errormessage:
-            print 'OK'
+            if 'search' in actionType:
+                cr=pyrules.createRules()
+                returnlist=cr.searchRules(actionType,selectType,keyWord,numberW)
+                print 'OK'
+        else:
+            cr=pyrules.createRules()
+            returnlist=cr.readTq()
     else:
         cr=pyrules.createRules()
         returnlist=cr.readTq()
