@@ -1,7 +1,7 @@
 subject	合作	0.233
 subject	发票	1.055
 subject	优惠	1.254
-body	改革目标	1.603
+body	改革目标	333
 body	权重的设计	1.529
 body	解雇辞退	1.903
 body	调岗调薪	1.615

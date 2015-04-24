@@ -14,6 +14,7 @@ class createRules:
         self.subjectlist=[]
         self.bodylist=[]
 
+    #返回读取文件的列表
     def readTq(self):
         f=open(self.filename,'r')
         flines=f.readlines()
@@ -22,6 +23,7 @@ class createRules:
         # print self.rulease_list
         return self.rulease_list
 
+    #整理参数的方法
     def zhFunction(self,*argv):
         # print argv
         actionType=argv[0].encode('utf-8').lower()
@@ -31,6 +33,7 @@ class createRules:
         # print '整理参数'
         return actionType,rulesType,keyWord,rulesNumber
 
+    #根据读取的文件.生成相应的字典
     def rulesDict(self):
         for rulease_one in self.rulease_list:
             # print rulease_one
@@ -38,7 +41,7 @@ class createRules:
                 self.subjectDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
             elif rulease_one[0].lower()=='body':
                 self.bodyDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
-
+    #查询
     def searchRules(self,*argv):
         try:
             self.readTq()
@@ -46,17 +49,122 @@ class createRules:
             canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
             self.rulesKey=canSu[1]+'_'+canSu[2]
             if canSu[1]=='body':
-                # print 'search_body'
+                print 'search_body'
                 return self.bodyDict[self.rulesKey]
             elif canSu[1]=='subject':
-                # print 'search_subject'
-                # print self.subjectDict[self.rulesKey]
+                print 'search_subject'
+                print self.subjectDict[self.rulesKey]
                 return self.subjectDict[self.rulesKey]
         except KeyError:
-            # print 'keyError'
+            print 'keyError'
             return False
         except Exception,e:
-            # print e
+            print e
             return False
 
+    #格式化字典.
+    def readDict(self):
+        for k,v in self.subjectDict.items():
+            self.subjectlist.append(v[0]+'\t'+v[1]+'\t'+v[2])
+        for k,v in self.bodyDict.items():
+            self.bodylist.append(v[0]+'\t'+v[1]+'\t'+v[2])
+        self.bodyrules=''
+        for subjectone in self.subjectlist:
+            self.bodyrules+=subjectone
+        for bodyone in self.bodylist:
+            self.bodyrules+=bodyone
+        return self.bodyrules
 
+    #写入文件
+    def writeFile(self,argv):
+        try:
+            create_Rules=open(self.filename,'w')
+            create_Rules.write(argv)
+            create_Rules.close()
+        except Exception,e:
+            print e
+
+    def delRules(self,*argv):
+        try:
+            print 'ok'
+            self.readTq()
+            self.rulesDict()
+            canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
+            self.rulesKey=canSu[1]+'_'+canSu[2]
+            if canSu[1]=='body':
+                print 'del_body'
+                del self.bodyDict[self.rulesKey]
+            elif canSu[1]=='subject':
+                print 'del_subject'
+                del self.subjectDict[self.rulesKey]
+            self.writeFile(self.readDict())
+            return True
+        except KeyError:
+            print 'keyerror'
+            return False
+        except Exception,e:
+            print e
+            return False
+
+    #更改
+    def updateRules(self,*argv):
+        try:
+            self.readTq()
+            self.rulesDict()
+            canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
+            self.rulesKey=canSu[1]+'_'+canSu[2]
+            if canSu[1]=='body':
+                # print 'update_body'
+                if self.rulesKey in self.bodyDict.keys():
+                    print 'OK_update_body'
+                    self.bodyDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+                else:
+                    print 'not key_body'
+                    return False
+            elif canSu[1]=='subject':
+                print 'update_subject'
+                if self.rulesKey in self.subjectDict.keys():
+                    # print 'ok_update_subject'
+                    self.subjectDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+                else:
+                    print 'not key_subject'
+                    return False
+            self.writeFile(self.readDict())
+            return True
+        except KeyError:
+            print 'keyError'
+            return False
+        except Exception,e:
+            print e
+            return False
+    def addRules(self,*argv):
+        try:
+            self.readTq()
+            self.rulesDict()
+            canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
+            self.rulesKey=canSu[1]+'_'+canSu[2]
+            if canSu[1]=='body':
+                # print 'update_body'
+                if self.rulesKey in self.bodyDict.keys():
+                    print 'OK_add_1'
+                    return False
+                else:
+                    print 'OK_add_2'
+                    self.bodyDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+            elif canSu[1]=='subject':
+                print 'update_subject'
+                if self.rulesKey in self.subjectDict.keys():
+                    # print 'ok_update_subject'
+                    print 'OK_add_3'
+                    return False
+                else:
+                    print 'OK_add_4'
+                    self.subjectDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+            self.writeFile(self.readDict())
+            return True
+        except KeyError:
+            print 'keyError'
+            return False
+        except Exception,e:
+            print e
+            return False

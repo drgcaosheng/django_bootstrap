@@ -149,9 +149,33 @@ def chinese_rules(request):
             errormessage.append('Please Input Key Number!!!')
         if not errormessage:
             if 'search' in actionType:
+                print actionType
                 cr=pyrules.createRules()
                 returnlist=cr.searchRules(actionType,selectType,keyWord,numberW)
-                print 'OK'
+            elif 'delete' in actionType:
+                cr=pyrules.createRules()
+                delReturn=cr.delRules(actionType,selectType,keyWord,numberW)
+                if delReturn:
+                    cr=pyrules.createRules()
+                    returnlist=cr.readTq()
+                else:
+                    returnlist=False
+            elif 'update' in actionType:
+                cr=pyrules.createRules()
+                updateReturn=cr.updateRules(actionType,selectType,keyWord,numberW)
+                if updateReturn:
+                    cr=pyrules.createRules()
+                    returnlist=cr.readTq()
+                else:
+                    returnlist=False
+            elif 'add' in actionType:
+                cr=pyrules.createRules()
+                addRules=cr.addRules(actionType,selectType,keyWord,numberW)
+                if addRules:
+                    cr=pyrules.createRules()
+                    returnlist=cr.readTq()
+                else:
+                    returnlist=False
         else:
             cr=pyrules.createRules()
             returnlist=cr.readTq()

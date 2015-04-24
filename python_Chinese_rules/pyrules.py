@@ -218,7 +218,7 @@ class createRules2:
         self.bodylist=[]
 
     def zhFunction(self,*argv):
-        # print argv
+        print argv
         actionType=argv[0].encode('utf-8').lower()
         rulesType=argv[1].encode('utf-8').lower()
         keyWord=argv[2].encode('utf-8').lower()
@@ -259,7 +259,8 @@ class createRules2:
             # canSu=self.zhFunction(actionType,typeRules,keyWord,numberRules)
             self.rulesKey=argv[1]+'_'+argv[2]
             # print self.rulesKey
-            # print self.bodyDict
+            print self.bodyDict
+            print self.subjectDict
             if argv[1]=='body':
                 print 'search_2_body'
                 # print self.bodyDict[self.rulesKey]
@@ -294,19 +295,34 @@ class createRules2:
         print self.bodyDict,self.subjectDict
 
     #更改
-    def updateRules(self,typeRules,keyWord,numberRules):
-        self.rulesKey=typeRules+'_'+keyWord
-        search_key=self.searchRules(typeRules,keyWord,numberRules)
-        if isinstance(search_key,list):
-            if typeRules.lower()=='body':
-                self.bodyDict[self.rulesKey]=[typeRules,keyWord,numberRules+'\r\n']
-                # print self.bodyDict
-                return True
-            elif typeRules.lower()=='subject':
-                self.subjectDict[self.rulesKey]=[typeRules,keyWord,numberRules+'\r\n']
-                # print self.subjectDict
-                return True
-        else:
+    def updateRules(self,*argv):
+        try:
+            print self.readTq()
+            print self.rulesDict()
+            canSu=self.zhFunction(argv[0],argv[1],argv[2],argv[3])
+            print canSu
+            self.rulesKey=canSu[1]+'_'+canSu[2]
+            print self.rulesKey
+            print self.subjectDict
+            print self.bodyDict
+            if canSu[1]=='body':
+                self.bodyDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+                print 'ok_body'
+                print self.bodyDict
+                # return True
+            elif canSu[1]=='subject':
+                self.subjectDict[self.rulesKey]=[canSu[1],canSu[2],canSu[3]+'\r\n']
+                print 'ok_subject'
+                print self.subjectDict
+                # return True
+            self.writeFile(self.readDict())
+            print self.readTq()
+            return True
+        except KeyError:
+            print 'keyError'
+            return False
+        except Exception,e:
+            print e
             return False
 
     #删除
@@ -357,11 +373,13 @@ class createRules2:
 
 if __name__=="__main__":
     cr=createRules2()
-    print cr.readTq()
+    # print cr.readTq()
     # cr.rulesDict()
     # print cr.searchRules('subject','优惠','1.2')
     # print cr.addRules('subject','优惠优惠优惠优惠','1.2222')
-    # cr.updateRules('subject','优惠','333')
+    cr.updateRules(u'select',u'body',u'改革目标',u'333')
+    # cr=createRules2()
+    # print cr.readTq()
     # cr.delRules('subject','优惠','333')
     # print cr.subjectDict
     # print cr.readDict()

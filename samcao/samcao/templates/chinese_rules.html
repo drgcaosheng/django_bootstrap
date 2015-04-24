@@ -91,7 +91,9 @@
                         <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
                     </tr>
                 {% endif %}
-            {% else %}
+            {% endif %}
+
+            {% if 'delete' in actionType and not errormessage %}
                 {% if returnlist %}
                     {% for rules_one in returnlist %}
                         <tr>
@@ -101,8 +103,58 @@
                             <td>{{ rules_one.2 }}</td>
                         </tr>
                     {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                    </tr>
                 {% endif %}
             {% endif %}
+
+            {% if 'update' in actionType and not errormessage %}
+                {% if returnlist %}
+                    {% for rules_one in returnlist %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ rules_one.0 }}</td>
+                            <td>{{ rules_one.1 }}</td>
+                            <td>{{ rules_one.2 }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+
+            {% if 'add' in actionType and not errormessage %}
+                {% if returnlist %}
+                    {% for rules_one in returnlist %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ rules_one.0 }}</td>
+                            <td>{{ rules_one.1 }}</td>
+                            <td>{{ rules_one.2 }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>{{ exampleInputkeyword }} Key Word Already exists!!!</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+
+            {% if returnlist and not actionType %}
+                {% for rules_one in returnlist %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ rules_one.0 }}</td>
+                        <td>{{ rules_one.1 }}</td>
+                        <td>{{ rules_one.2 }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
             </tbody>
       </table>
 </div>
