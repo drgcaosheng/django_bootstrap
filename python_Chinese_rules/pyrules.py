@@ -216,6 +216,7 @@ class createRules2:
         self.bodyDict={}
         self.subjectlist=[]
         self.bodylist=[]
+        self.create_Rules="chinese_rules.cf"
 
     def zhFunction(self,*argv):
         print argv
@@ -370,20 +371,59 @@ class createRules2:
             print 'search_1'
             self.searchRules(canSu[0],canSu[1],canSu[2],canSu[3])
 
+#根据readTq读取的subjectlist将其写入到chinese_rules.cf文件中.
+    def writeSubject(self):
+        i=1
+        for subject_one in self.subjectDict.values():
+            wsub='header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subject_one[1]+'/\r\n'+'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subject_one[1]+'"\r\n'+'score CN_SUBJECT_'+str(i)+'\t'+subject_one[2]+"\r\n"
+            self.writeFile(wsub)
+            i+=1
+
+#根据readTq读取的bodylist将其写入到chinese_rules.cf文件中.
+    def writeBody(self):
+        i=1
+        for body_one in self.bodyDict.values():
+            wtbody='body CN_BODY_'+str(i)+'\t'+'/'+body_one[1]+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+body_one[1]+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+body_one[2]+"\r\n"
+            self.writeFile(wtbody)
+            i+=1
+
+#将相关的信息写入到chinese_rules.cf文件中.
+#仅负责写入
+    def writeFile(self,argv):
+        try:
+            create_Rules=open(self.create_Rules,'a+')
+            create_Rules.write(argv)
+            create_Rules.close()
+        except Exception,e:
+            print e
+
+        #整理文件列表,返回两个字典
+    def rulesDict2_down(self):
+        for rulease_one in self.rulease_list:
+            # print rulease_one
+            if rulease_one[0].lower()=='subject':
+                self.subjectDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
+            elif rulease_one[0].lower()=='body':
+                self.bodyDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
+
+    def menuCreateDown(self):
+        if os.path.exists(self.create_Rules):
+            os.remove(self.create_Rules)
+        else:
+            cr.readTq()
+            cr.rulesDict2_down()
+            cr.writeSubject()
+            cr.writeBody()
+
+
 
 if __name__=="__main__":
     cr=createRules2()
-    # print cr.readTq()
-    # cr.rulesDict()
-    # print cr.searchRules('subject','优惠','1.2')
-    # print cr.addRules('subject','优惠优惠优惠优惠','1.2222')
-    cr.updateRules(u'select',u'body',u'改革目标',u'333')
-    # cr=createRules2()
-    # print cr.readTq()
-    # cr.delRules('subject','优惠','333')
-    # print cr.subjectDict
-    # print cr.readDict()
-    # cr.inputRules()
-    # print cr.searchRules(u'body',u'有限公司',u'2')
-    # print cr.addRules(u'body',u'有限公司',u'2')
+    cr.menuCreateDown()
+
+
+    # cr.writeSubject()
+    # cr.writeBody()
+
+
 

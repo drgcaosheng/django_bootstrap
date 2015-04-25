@@ -1,8 +1,4 @@
-subject	优惠	1.023
-body	改革目标	1.603
-body	权重的设计	1.529
-body	解雇辞退	1.903
-body	调岗调薪	1.615
-body	发票	1
-body	处理技巧	2.629
-body	西方管理模式	2.991
+body CN_BODY_7	/处理技巧/
+describe CN_BODY_7	Body contains "处理技巧"
+score CN_BODY_7	2.629
+

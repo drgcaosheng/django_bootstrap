@@ -88,7 +88,7 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                        <td>类型: <b>{{ selectType }}</b>  没有关键词 <b>{{ exampleInputkeyword }}</b>!!!请确定关键词是否正确!!!</td>
                     </tr>
                 {% endif %}
             {% endif %}
@@ -105,7 +105,7 @@
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                        <td>类型: <b>{{ selectType }}</b>  没有关键词 <b>{{ exampleInputkeyword }}</b>!!!请确定关键词是否正确!!!</td>
                     </tr>
                 {% endif %}
             {% endif %}
@@ -122,7 +122,7 @@
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td>Not {{ exampleInputkeyword }} Key Word!!!</td>
+                        <td>类型: <b>{{ selectType }}</b>  没有关键词 <b>{{ exampleInputkeyword }}</b>!!!请确定关键词是否正确!!!</td>
                     </tr>
                 {% endif %}
             {% endif %}
@@ -139,12 +139,11 @@
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td>{{ exampleInputkeyword }} Key Word Already exists!!!</td>
+                        <td>类型: <b>{{ selectType }}</b>  关键词 <b>{{ exampleInputkeyword }}</b> 已经存在!!! !!!请确定关键词是否正确!!!</td>
                     </tr>
                 {% endif %}
             {% endif %}
-
-            {% if returnlist and not actionType %}
+            {% if not actionType and not errormessage %}
                 {% for rules_one in returnlist %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
@@ -153,9 +152,25 @@
                         <td>{{ rules_one.2 }}</td>
                     </tr>
                 {% endfor %}
+            {% else %}
+                {% if errormessage and returnlist %}
+                    {% for rules_one in returnlist %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ rules_one.0 }}</td>
+                            <td>{{ rules_one.1 }}</td>
+                            <td>{{ rules_one.2 }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
 
             </tbody>
       </table>
 </div>
+    <a href="/testimage">测试图片显示是否正常</a>
+        <hr/>
+    <a href="/testcsv">测试csv</a>
+        <hr/>
+    <a href="/testtxt">测试txt</a>
 {% endblock %}

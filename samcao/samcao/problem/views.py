@@ -9,6 +9,8 @@ from django.template import RequestContext
 import testemail
 import pyrules
 
+import csv
+
 import tqjinyanends
 import cookielib
 import datetime,time
@@ -177,9 +179,11 @@ def chinese_rules(request):
                 else:
                     returnlist=False
         else:
+            print 'not errormessage'
             cr=pyrules.createRules()
             returnlist=cr.readTq()
     else:
+        print 'not __  post'
         cr=pyrules.createRules()
         returnlist=cr.readTq()
         # print 'not post'
@@ -196,17 +200,43 @@ def chinese_rules(request):
 
 
 
+def testimage(request):
+    image_data=open("rules/1.jpg",'rb').read()
+    return HttpResponse(image_data,mimetype="image/jpg")
+
+
+UNRULY_PASSENGERS = [146,184,235,200,226,251,299,273,281,304,203]
+def testcsv(request):
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=unruly.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Year', 'Unruly Airline Passengers'])
+    for (year, num) in zip(range(1995, 2006), UNRULY_PASSENGERS):
+        writer.writerow([year, num])
+    return response
 
 
 
 
+def readFile(fn, buf_size=262144):
+    f=open(fn,"rb")
+    while True:
+        c=f.read(buf_size)
+        if c:
+            yield c
+        else:
+            break
+        f.close()
 
 
-
-
-
-
-
+def testtxt(request):
+    cr=pyrules.createRules()
+    cr.menuCreateDown()
+    file_name=r'rules/chinese_rules.cf'
+    response = HttpResponse(readFile(file_name),mimetype='application/octet-stream')
+    response['Content-Disposition'] = 'attachment; filename=%s' % file_name
+    return  response
 
 
 

@@ -13,6 +13,7 @@ class createRules:
         self.bodyDict={}
         self.subjectlist=[]
         self.bodylist=[]
+        self.create_Rules="rules/chinese_rules.cf"
 
     #返回读取文件的列表
     def readTq(self):
@@ -41,7 +42,7 @@ class createRules:
                 self.subjectDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
             elif rulease_one[0].lower()=='body':
                 self.bodyDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
-    #查询
+    #查询rules
     def searchRules(self,*argv):
         try:
             self.readTq()
@@ -84,6 +85,7 @@ class createRules:
         except Exception,e:
             print e
 
+    #删除rules
     def delRules(self,*argv):
         try:
             print 'ok'
@@ -106,7 +108,7 @@ class createRules:
             print e
             return False
 
-    #更改
+    #更改rules
     def updateRules(self,*argv):
         try:
             self.readTq()
@@ -137,6 +139,8 @@ class createRules:
         except Exception,e:
             print e
             return False
+
+    #添加rules
     def addRules(self,*argv):
         try:
             self.readTq()
@@ -168,3 +172,57 @@ class createRules:
         except Exception,e:
             print e
             return False
+
+
+    #仅负责写入
+    def writeFileDown(self,argv):
+        try:
+            create_Rules=open(self.create_Rules,'a+')
+            create_Rules.write(argv)
+            create_Rules.close()
+        except Exception,e:
+            print e
+
+        #整理文件列表,返回两个字典
+    def rulesDict2_down(self):
+        for rulease_one in self.rulease_list:
+            # print rulease_one
+            if rulease_one[0].lower()=='subject':
+                self.subjectDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
+            elif rulease_one[0].lower()=='body':
+                self.bodyDict[rulease_one[0]+'_'+rulease_one[1]]=rulease_one
+
+
+#根据readTq读取的subjectlist将其写入到chinese_rules.cf文件中.
+    def writeSubject(self):
+        i=1
+        for subject_one in self.subjectDict.values():
+            wsub='header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subject_one[1]+'/\r\n'+'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subject_one[1]+'"\r\n'+'score CN_SUBJECT_'+str(i)+'\t'+subject_one[2]+"\r\n"
+            self.writeFile(wsub)
+            i+=1
+
+#根据readTq读取的bodylist将其写入到chinese_rules.cf文件中.
+    def writeBody(self):
+        i=1
+        for body_one in self.bodyDict.values():
+            wtbody='body CN_BODY_'+str(i)+'\t'+'/'+body_one[1]+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+body_one[1]+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+body_one[2]+"\r\n"
+            self.writeFile(wtbody)
+            i+=1
+
+#下载功能菜单
+    def menuCreateDown(self):
+        print 'OK_Menu'
+        if os.path.exists(self.create_Rules):
+            print 'del_file1'
+            os.remove(self.create_Rules)
+        else:
+            print 'del_file2'
+            self.readTq()
+            print 'readtq'
+            self.rulesDict2_down()
+            print 'rulesDict2_down'
+            self.writeSubject()
+            print 'writeSubject'
+            self.writeBody()
+            print 'writeBody'
+        return True
