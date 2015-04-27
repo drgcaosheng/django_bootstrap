@@ -1,0 +1,41 @@
+header CN_SUBJECT_1	Subject =~ /合作/
+describe CN_SUBJECT_1	Subject contains "合作"
+score CN_SUBJECT_1	1
+
+header CN_SUBJECT_2	Subject =~ /发票/
+describe CN_SUBJECT_2	Subject contains "发票"
+score CN_SUBJECT_2	1
+
+header CN_SUBJECT_3	Subject =~ /优惠/
+describe CN_SUBJECT_3	Subject contains "优惠"
+score CN_SUBJECT_3	1.254
+
+
+body CN_BODY_1	/改革目标/
+describe CN_BODY_1	Body contains "改革目标"
+score CN_BODY_1	333
+
+body CN_BODY_2	/权重的设计/
+describe CN_BODY_2	Body contains "权重的设计"
+score CN_BODY_2	1.529
+
+body CN_BODY_3	/公司/
+describe CN_BODY_3	Body contains "公司"
+score CN_BODY_3	1.09
+
+body CN_BODY_4	/解雇辞退/
+describe CN_BODY_4	Body contains "解雇辞退"
+score CN_BODY_4	1.903
+
+body CN_BODY_5	/调岗调薪/
+describe CN_BODY_5	Body contains "调岗调薪"
+score CN_BODY_5	1.615
+
+body CN_BODY_6	/处理技巧/
+describe CN_BODY_6	Body contains "处理技巧"
+score CN_BODY_6	2.629
+
+body CN_BODY_7	/西方管理模式/
+describe CN_BODY_7	Body contains "西方管理模式"
+score CN_BODY_7	2.991
+

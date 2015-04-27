@@ -5,6 +5,7 @@ from samcao.problem.models import System,Type,Way,User
 from samcao.problem.forms import OldEmailBox
 #POST
 from django.template import RequestContext
+from django.http import StreamingHttpResponse
 #testmailbox
 import testemail
 import pyrules
@@ -188,7 +189,6 @@ def chinese_rules(request):
         returnlist=cr.readTq()
         # print 'not post'
 
-
     return render_to_response('chinese_rules.html',{
         'returnlist':returnlist,
         'errormessage':errormessage,
@@ -197,24 +197,6 @@ def chinese_rules(request):
         'exampleInputkeyword':request.REQUEST.get('exampleInputkeyword',''),
         'exampleInputNumber':request.REQUEST.get('exampleInputNumber','')
     },context_instance=RequestContext(request))
-
-
-
-def testimage(request):
-    image_data=open("rules/1.jpg",'rb').read()
-    return HttpResponse(image_data,mimetype="image/jpg")
-
-
-UNRULY_PASSENGERS = [146,184,235,200,226,251,299,273,281,304,203]
-def testcsv(request):
-    response = HttpResponse(mimetype='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=unruly.csv'
-
-    writer = csv.writer(response)
-    writer.writerow(['Year', 'Unruly Airline Passengers'])
-    for (year, num) in zip(range(1995, 2006), UNRULY_PASSENGERS):
-        writer.writerow([year, num])
-    return response
 
 
 
@@ -233,10 +215,22 @@ def readFile(fn, buf_size=262144):
 def testtxt(request):
     cr=pyrules.createRules()
     cr.menuCreateDown()
-    file_name=r'rules/chinese_rules.cf'
-    response = HttpResponse(readFile(file_name),mimetype='application/octet-stream')
-    response['Content-Disposition'] = 'attachment; filename=%s' % file_name
-    return  response
+    print 'file_cun_zai______________222'
+    def file_iterator(file_name,chunk_size=512):
+        with open(file_name) as f:
+            while True:
+                c=f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+    print 'file_cun_zai______________111'
+    the_file_name=r'rules/chinese_rules.cf'
+    response = StreamingHttpResponse(file_iterator(the_file_name))
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
+    return response
+
+
 
 
 

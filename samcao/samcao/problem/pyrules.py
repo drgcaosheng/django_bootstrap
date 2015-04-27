@@ -197,32 +197,33 @@ class createRules:
     def writeSubject(self):
         i=1
         for subject_one in self.subjectDict.values():
-            wsub='header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subject_one[1]+'/\r\n'+'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subject_one[1]+'"\r\n'+'score CN_SUBJECT_'+str(i)+'\t'+subject_one[2]+"\r\n"
-            self.writeFile(wsub)
+            wsub='header CN_SUBJECT_'+str(i)+'\t'+'Subject =~ /'+subject_one[1]+'/\r\n'+'describe CN_SUBJECT_'+str(i)+'\tSubject contains "'+subject_one[1]+'"\r\n'+'score CN_SUBJECT_'+str(i)+'\t'+subject_one[2]+'\r\n'
+            self.writeFileDown(wsub)
             i+=1
 
 #根据readTq读取的bodylist将其写入到chinese_rules.cf文件中.
     def writeBody(self):
         i=1
+        self.writeFileDown('\r\n')
         for body_one in self.bodyDict.values():
-            wtbody='body CN_BODY_'+str(i)+'\t'+'/'+body_one[1]+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+body_one[1]+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+body_one[2]+"\r\n"
-            self.writeFile(wtbody)
+            wtbody='body CN_BODY_'+str(i)+'\t'+'/'+body_one[1]+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+body_one[1]+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+body_one[2]+'\r\n'
+            self.writeFileDown(wtbody)
             i+=1
 
 #下载功能菜单
     def menuCreateDown(self):
+
         print 'OK_Menu'
         if os.path.exists(self.create_Rules):
             print 'del_file1'
             os.remove(self.create_Rules)
-        else:
-            print 'del_file2'
-            self.readTq()
-            print 'readtq'
-            self.rulesDict2_down()
-            print 'rulesDict2_down'
-            self.writeSubject()
-            print 'writeSubject'
-            self.writeBody()
-            print 'writeBody'
+        print 'del_file2'
+        self.readTq()
+        print 'readtq'
+        self.rulesDict2_down()
+        print 'rulesDict2_down'
+        self.writeSubject()
+        print 'writeSubject'
+        self.writeBody()
+        print 'writeBody'
         return True
