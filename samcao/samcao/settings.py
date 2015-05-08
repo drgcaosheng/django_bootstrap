@@ -16,7 +16,7 @@ DATABASES = {
         'NAME': 'djang_bootstrap',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': '1qaz2wsx',
+        'PASSWORD': 'ends',
         'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
@@ -30,11 +30,11 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 
 SITE_ID = 1
 
@@ -122,6 +122,8 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    #bootstrap_admin
+    # 'bootstrap_admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -135,6 +137,14 @@ INSTALLED_APPS = (
     'samcao.problem',
     'debugtools',
 )
+
+#########################################################
+#from django.conf import global_settings
+#TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    #'django.core.context_processors.request',
+#)
+#BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
+#########################################################
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

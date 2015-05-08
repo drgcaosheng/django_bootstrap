@@ -29,9 +29,9 @@ urlpatterns += patterns('samcao.problem.views',
     url(r'^qy_email/$','qy_email'),
     url(r'^qy_emailtest/$','qy_emailtest'),
     url(r'^chinese_rules/$','chinese_rules'),
-    url(r'^testimage/$','testimage'),
-    url(r'^testcsv/$','testcsv'),
     url(r'^testtxt/$','testtxt'),
+    url(r'^testb/$','testb'),
+    url(r'^webmail/$','webmail'),
 
 )
 

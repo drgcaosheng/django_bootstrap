@@ -215,7 +215,6 @@ def readFile(fn, buf_size=262144):
 def testtxt(request):
     cr=pyrules.createRules()
     cr.menuCreateDown()
-    print 'file_cun_zai______________222'
     def file_iterator(file_name,chunk_size=512):
         with open(file_name) as f:
             while True:
@@ -224,11 +223,21 @@ def testtxt(request):
                     yield c
                 else:
                     break
-    print 'file_cun_zai______________111'
     the_file_name=r'rules/chinese_rules.cf'
     response = StreamingHttpResponse(file_iterator(the_file_name))
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
     return response
+
+def testb(request):
+    the_file_name=r'rules/chinese_rules.cf'
+    f=file(the_file_name,'r')
+    b=f.readlines()
+    print b
+    return render_to_response('testb.html',{'b':b})
+
+
+def webmail(request):
+    return  render_to_response('webmail_index.html')
 
 
 

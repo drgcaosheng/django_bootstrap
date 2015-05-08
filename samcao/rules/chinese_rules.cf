@@ -10,7 +10,6 @@ header CN_SUBJECT_3	Subject =~ /优惠/
 describe CN_SUBJECT_3	Subject contains "优惠"
 score CN_SUBJECT_3	1.254
 
-
 body CN_BODY_1	/改革目标/
 describe CN_BODY_1	Body contains "改革目标"
 score CN_BODY_1	333

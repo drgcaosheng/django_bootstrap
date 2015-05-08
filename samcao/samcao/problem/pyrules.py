@@ -204,7 +204,6 @@ class createRules:
 #根据readTq读取的bodylist将其写入到chinese_rules.cf文件中.
     def writeBody(self):
         i=1
-        self.writeFileDown('\r\n')
         for body_one in self.bodyDict.values():
             wtbody='body CN_BODY_'+str(i)+'\t'+'/'+body_one[1]+'/\r\n'+'describe CN_BODY_'+str(i)+'\tBody contains "'+body_one[1]+'"\r\n'+'score CN_BODY_'+str(i)+'\t'+body_one[2]+'\r\n'
             self.writeFileDown(wtbody)
