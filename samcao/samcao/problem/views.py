@@ -240,7 +240,9 @@ def webmail(request):
     return  render_to_response('webmail_index.html')
 
 
-
+def testimage(request):
+    image_data=open(r'rules/1.jpg','rb').read()
+    return HttpResponse(image_data,mimetype='image/jpg')
 
 
 

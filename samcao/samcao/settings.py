@@ -139,11 +139,12 @@ INSTALLED_APPS = (
 )
 
 #########################################################
-#from django.conf import global_settings
-#TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    #'django.core.context_processors.request',
-#)
-#BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+)
 #########################################################
 
 # A sample logging configuration. The only tangible logging

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/django_bootstrap.iml" filepath="$PROJECT_DIR$/.idea/django_bootstrap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flask/.idea/flask.iml" filepath="$PROJECT_DIR$/flask/.idea/flask.iml" />
     </modules>
   </component>
 </project>

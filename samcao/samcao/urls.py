@@ -32,6 +32,7 @@ urlpatterns += patterns('samcao.problem.views',
     url(r'^testtxt/$','testtxt'),
     url(r'^testb/$','testb'),
     url(r'^webmail/$','webmail'),
+    url(r'^testimage/$','testimage'),
 
 )
 
