@@ -16,7 +16,7 @@ DATABASES = {
         'NAME': 'djang_bootstrap',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'ends',
+        'PASSWORD': '1qaz2wsx',
         'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
@@ -139,12 +139,12 @@ INSTALLED_APPS = (
 )
 
 #########################################################
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-)
+#TEMPLATE_CONTEXT_PROCESSORS = (
+#    'django.core.context_processors.auth',
+#    'django.core.context_processors.debug',
+#    'django.core.context_processors.i18n',
+#    'django.core.context_processors.media',
+#)
 #########################################################
 
 # A sample logging configuration. The only tangible logging
