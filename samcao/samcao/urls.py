@@ -20,7 +20,7 @@ urlpatterns = patterns('samcao.views',
     url(r'^admin/', include(admin.site.urls)),
 )
 urlpatterns += patterns('samcao.problem.views',
-    url(r'^$','index'),
+    url(r'^$','home'),
     url(r'^add_way/$','add_way'),
     url(r'^jy_list/$','jy_list'),
     url(r'^system_gl/$','system_gl'),
@@ -33,6 +33,7 @@ urlpatterns += patterns('samcao.problem.views',
     url(r'^testb/$','testb'),
     url(r'^webmail/$','webmail'),
     url(r'^testimage/$','testimage'),
+    url(r'^home/$','index'),
 
 )
 

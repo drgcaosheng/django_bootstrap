@@ -112,7 +112,9 @@ def qy_email(request):
                     te=oldmailServer+"-"+oldemailAddress+"-"+oldpassWord
                     qy_email=testemail.qiyiold(oldmailServer,oldemailAddress,oldpassWord,oldssl,newmailServer,newemailAddress,newpassWord,newssl)
                     qy_email=str(qy_email).upper()
-                    return render_to_response('qdqyemail.html',{'qy_email':qy_email,'oldemailAddress':oldemailAddress,'newemailAddress':newemailAddress})
+                    return render_to_response('qdqyemail.html',
+                    {'qy_email':qy_email,'oldemailAddress':oldemailAddress,'newemailAddress':newemailAddress}
+                    )
             else:
                 newerrors.append(csnewEmail)
                 olderrors.append(csoldEmail)
@@ -198,9 +200,6 @@ def chinese_rules(request):
         'exampleInputNumber':request.REQUEST.get('exampleInputNumber','')
     },context_instance=RequestContext(request))
 
-
-
-
 def readFile(fn, buf_size=262144):
     f=open(fn,"rb")
     while True:
@@ -245,7 +244,8 @@ def testimage(request):
     return HttpResponse(image_data,mimetype='image/jpg')
 
 
-
+def home(request):
+    return HttpResponse("Hello World!!!")
 
 
 
